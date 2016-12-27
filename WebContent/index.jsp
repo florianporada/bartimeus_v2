@@ -1,0 +1,1 @@
+If you reached this pages, something is really messed up with the configuration of SpringMVC. This page should not be available.

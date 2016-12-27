@@ -21,6 +21,10 @@ public class BaseController {
 		crumbs.add(new MenuItem("modwillie", "Home", "/ModWillie"));
 		crumbs.add(new MenuItem("user", "User", "/ModWillie/user"));
 		crumbs.add(new MenuItem("login", "Login", "/ModWillie/user/login"));
+		
+		crumbs.add(new MenuItem("application", "Manage Applications", "/ModWillie/application"));
+		crumbs.add(new MenuItem("notification", "Manage Notifications", "/ModWillie/notification"));
+		crumbs.add(new MenuItem("sensor", "Manage Sensors", "/ModWillie/sensor"));
 	}
 	
 	private MenuItem getCrumb(String key) {

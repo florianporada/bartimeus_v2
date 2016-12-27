@@ -19,13 +19,13 @@ public class BaseController {
 	static {
 		// TODO: The app should be able to run independent of /ModWillie and stuff
 		crumbs = new ArrayList<>();
-		crumbs.add(new MenuItem("modwillie", "{{ 'home_title' | translate }}", "/ModWillie"));
-		crumbs.add(new MenuItem("user", "{{ 'user_title' | translate }}", "/ModWillie/user"));
-		crumbs.add(new MenuItem("login", "{{ 'login_title' | translate }}", "/ModWillie/user/login"));
+		crumbs.add(new MenuItem("modwillie", "{{ 'home_title' | translate }}", "/ModWillie/"));
+		crumbs.add(new MenuItem("user", "{{ 'user_title' | translate }}", "/ModWillie/user/"));
+		crumbs.add(new MenuItem("login", "{{ 'login_title' | translate }}", "/ModWillie/user/login/"));
 		
-		crumbs.add(new MenuItem("application", "{{ 'manage_app' | translate }}", "/ModWillie/application"));
-		crumbs.add(new MenuItem("notification", "{{ 'manage_not' | translate }}", "/ModWillie/notification"));
-		crumbs.add(new MenuItem("sensor", "{{ 'manage_sensor' | translate }}", "/ModWillie/sensor"));
+		crumbs.add(new MenuItem("application", "{{ 'manage_app' | translate }}", "/ModWillie/application/"));
+		crumbs.add(new MenuItem("notification", "{{ 'manage_not' | translate }}", "/ModWillie/notification/"));
+		crumbs.add(new MenuItem("sensor", "{{ 'manage_sensor' | translate }}", "/ModWillie/sensor/"));
 	}
 	
 	private MenuItem getCrumb(String key) {

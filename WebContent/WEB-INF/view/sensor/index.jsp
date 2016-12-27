@@ -6,6 +6,16 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 
 <c:set var="url" value="${requestScope['javax.servlet.forward.request_uri']}" />
-<t:layout title="Bartiméus">
-	<h1>Hey</h1>
+<t:layout title="{{ 'manage_sensor' | translate }}">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'manage_sensor' | translate }}</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+				</div>
+			</div>
+		</div>
+	</div>
 </t:layout>

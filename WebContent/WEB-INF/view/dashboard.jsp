@@ -9,7 +9,7 @@
 <t:layout title="Bartiméus">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Dashboard</h3>
+			<h3 class="panel-title">{{ 'dashboard' | translate }}</h3>
 		</div>
 		<div class="panel-body">
 			<div class="row">
@@ -20,13 +20,13 @@
 					</a>
 				</div>
 				<div class="col-md-4 flex-center">
-					<a class="icon-button" href="notification/">
+					<a class="icon-button" href="sensor/">
 						<i class="fa fa-bell"></i>
 						<span class="label">{{ 'manage_sensor' | translate }}</span>
 					</a>
 				</div>
 				<div class="col-md-4 flex-center">
-					<a class="icon-button" href="sensor/">
+					<a class="icon-button" href="notification/">
 						<i class="fa fa-rss"></i>
 						<span class="label">{{ 'manage_not' | translate }}</span>
 					</a>

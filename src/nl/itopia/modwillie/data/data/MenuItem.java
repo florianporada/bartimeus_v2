@@ -1,5 +1,15 @@
 package nl.itopia.modwillie.data.data;
 
+/**
+ * A data object that is used in the breadcrumbs. It holds three values.
+ * The breadcrumbs are automatically generated (when they're defined in the BaseController), and the request URI is used to defined what key it should use.
+ * 1) A key, which should correspond the part in the request URI.
+ * 2) A name, which will be shown to the user
+ * 3) A url, which will be used when the user clicks on a link
+ * 
+ * @author Robin de Jong
+ */
+
 public class MenuItem {
 	private String key;
 	private String name;

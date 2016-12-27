@@ -1,5 +1,9 @@
 package nl.itopia.modwillie.data.dao;
 
+/**
+ * A DAO for the user that defines how the objects should be loaded
+ * @author Robin de Jong
+ */
 
 import java.util.List;
 import org.hibernate.Query;

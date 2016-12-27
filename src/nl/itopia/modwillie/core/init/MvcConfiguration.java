@@ -1,11 +1,17 @@
 package nl.itopia.modwillie.core.init;
 
+/**
+ * All the configurations for SpringMVC and Hibernate reside in this class.
+ * @author Robin de Jong
+ */
+
 import java.util.Properties;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -23,7 +29,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @EnableAsync
 @EnableTransactionManagement
-//@Import({SecurityConfiguration.class})
+@Import({SecurityConfiguration.class})
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_PASSWORD = "willie123";

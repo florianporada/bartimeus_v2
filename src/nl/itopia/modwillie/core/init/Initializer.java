@@ -1,5 +1,10 @@
 package nl.itopia.modwillie.core.init;
 
+/**
+ * The initializer of the application. The class will tell SpringMVC which configurations to launch with.
+ * @author Robin de Jong
+ */
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;

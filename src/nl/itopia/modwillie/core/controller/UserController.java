@@ -1,10 +1,14 @@
 package nl.itopia.modwillie.core.controller;
-import java.security.Principal;
 
+/**
+ * The controller for user page. The user page has a few functions: Login, Logout, and Create.
+ * @author Robin de Jong
+ */
+
+import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

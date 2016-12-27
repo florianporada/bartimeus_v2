@@ -16,19 +16,19 @@
 				<div class="col-md-4 flex-center">
 					<a class="icon-button" href="application/">
 						<i class="fa fa-mobile"></i>
-						<span class="label">Manage Application</span>
+						<span class="label">{{ 'manage_app' | translate }}</span>
 					</a>
 				</div>
 				<div class="col-md-4 flex-center">
 					<a class="icon-button" href="notification/">
 						<i class="fa fa-bell"></i>
-						<span class="label">Manage Notifications</span>
+						<span class="label">{{ 'manage_sensor' | translate }}</span>
 					</a>
 				</div>
 				<div class="col-md-4 flex-center">
 					<a class="icon-button" href="sensor/">
 						<i class="fa fa-rss"></i>
-						<span class="label">Manage Sensors</span>
+						<span class="label">{{ 'manage_not' | translate }}</span>
 					</a>
 				</div>
 			</div>

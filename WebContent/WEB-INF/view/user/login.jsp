@@ -6,29 +6,29 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<t:layout title="Bartiméus: Login">
+<t:layout title="{{ 'login_title' | translate }}">
 	<div class="col-md-10 col-xs-12 col-centered" style="background-color: white;">
 		<c:if test="${not empty error}">
-			Invalid username or password
+			{{ 'login_error' | translate }}
 		</c:if>
 		
 		<form:form method="post" modelAttribute="user" cssClass="input-form">
 			<div class="form-group">
-				<label for="name">Username</label>
-				<form:input path="username" type="text" id="username" placeholder="Username" cssClass="form-control"/>
+				<label for="name">{{ 'username' | translate }}</label>
+				<form:input path="username" type="text" id="username" placeholder="{{ 'username' | translate }}" cssClass="form-control"/>
 				<form:errors path="username" />
 			</div>
 			<div class="form-group">
-				<label for="password">Password</label>
-				<form:input path="password" type="password" id="password" placeholder="Password" cssClass="form-control"/>
+				<label for="password">{{ 'password' | translate }}</label>
+				<form:input path="password" type="password" id="password" placeholder="{{ 'password' | translate }}" cssClass="form-control"/>
 				<form:errors path="password" />
 			</div>
 			<div class="form-group">
-				<p>Don't have an account? <a href="../create/">Create one now!</a></p>
+				<p>{{ 'no_account' | translate }} <a href="../create/">{{ 'create_account' | translate }}</a></p>
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-success btn-block">
-					Login
+					{{ 'login_button' | translate }}
 				</button>
 			</div>
 			

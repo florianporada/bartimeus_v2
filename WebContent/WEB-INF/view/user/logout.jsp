@@ -6,8 +6,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<t:layout title="Willie: Logout">
+<t:layout title="{{ 'logout_title' | translate }}">
 	<div class="col-md-10 col-xs-12 col-centered" style="background-color: rgb(41, 92, 135); color: #FAFAFA">
-		<p class="logout">You're logged out. <a href="../login">Click here to login</a></p>
+		<p class="logout">{{ 'logged_out' | translate }} <a href="../login">{{ 'click_login' | translate }}</a></p>
 	</div>
 </t:layout>

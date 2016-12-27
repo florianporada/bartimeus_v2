@@ -1,5 +1,6 @@
 package nl.itopia.modwillie.core.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +19,13 @@ public class BaseController {
 	static {
 		// TODO: The app should be able to run independent of /ModWillie and stuff
 		crumbs = new ArrayList<>();
-		crumbs.add(new MenuItem("modwillie", "Home", "/ModWillie"));
-		crumbs.add(new MenuItem("user", "User", "/ModWillie/user"));
-		crumbs.add(new MenuItem("login", "Login", "/ModWillie/user/login"));
+		crumbs.add(new MenuItem("modwillie", "{{ 'home_title' | translate }}", "/ModWillie"));
+		crumbs.add(new MenuItem("user", "{{ 'user_title' | translate }}", "/ModWillie/user"));
+		crumbs.add(new MenuItem("login", "{{ 'login_title' | translate }}", "/ModWillie/user/login"));
 		
-		crumbs.add(new MenuItem("application", "Manage Applications", "/ModWillie/application"));
-		crumbs.add(new MenuItem("notification", "Manage Notifications", "/ModWillie/notification"));
-		crumbs.add(new MenuItem("sensor", "Manage Sensors", "/ModWillie/sensor"));
+		crumbs.add(new MenuItem("application", "{{ 'manage_app' | translate }}", "/ModWillie/application"));
+		crumbs.add(new MenuItem("notification", "{{ 'manage_not' | translate }}", "/ModWillie/notification"));
+		crumbs.add(new MenuItem("sensor", "{{ 'manage_sensor' | translate }}", "/ModWillie/sensor"));
 	}
 	
 	private MenuItem getCrumb(String key) {
@@ -38,7 +39,13 @@ public class BaseController {
 	}
 	
 	@ModelAttribute
-	public void index(Model model, HttpServletRequest request) {
+	public void index(Model model, Principal principal, HttpServletRequest request) {
+		boolean isLoggedIn  = principal != null;
+		model.addAttribute("isLoggedIn", isLoggedIn);
+		if(isLoggedIn) {
+			model.addAttribute("user", principal.getName());
+		}
+		
 		// Get the URI, which will look like: /Willie/user/login
 		String uri = request.getRequestURI();
 		// We don't need the first '/' when splitting the string to parts 

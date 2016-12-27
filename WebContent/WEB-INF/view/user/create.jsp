@@ -6,30 +6,30 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<t:layout title="Willie: Create">
+<t:layout title="{{ 'create_title' | translate }}">
 	<div class="col-md-10 col-xs-12 col-centered" style="background-color: white;">
 	<c:if test="${param.error}">
-		Invalid username or password
+		{{ 'login_error' | translate }}
 	</c:if>
 		<form:form method="post" modelAttribute="user" cssClass="input-form">
 			<div class="form-group">
-				<label for="name">Username</label>
-				<form:input path="username" type="text" id="username" placeholder="Username" cssClass="form-control"/>
+				<label for="name">{{ 'username' | translate }}</label>
+				<form:input path="username" type="text" id="username" placeholder="{{ 'username' | translate }}" cssClass="form-control"/>
 				<form:errors path="username" />
 			</div>
 			<div class="form-group">
-				<label for="password">Password</label>
-				<form:input path="password" type="password" id="password" placeholder="Password" cssClass="form-control"/>
+				<label for="password">{{ 'password' | translate }}</label>
+				<form:input path="password" type="password" id="password" placeholder="{{ 'password' | translate }}" cssClass="form-control"/>
 				<form:errors path="password" />
 			</div>
 			<div class="form-group">
-				<label for="password">Retype password</label>
-				<form:input path="rePassword" type="password" id="rePassword" placeholder="Retype password" cssClass="form-control"/>
+				<label for="rePassword">{{ 're_password' | translate }}</label>
+				<form:input path="rePassword" type="password" id="rePassword" placeholder="{{ 're_password' | translate }}" cssClass="form-control"/>
 				<form:errors path="rePassword" />
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-success btn-block">
-					<i class="fa fa-plus"></i> Login
+					<i class="fa fa-plus"></i> {{ 'create_button' | translate }}
 				</button>
 			</div>
 			

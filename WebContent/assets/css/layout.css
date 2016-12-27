@@ -103,3 +103,45 @@ body {
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
+
+.overlay {
+	position: absolute;
+	z-index: 1000000;
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: #fafafa;
+	color: #212121; 
+}
+
+.overlay .loader {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 25px; 
+}
+
+
+.i18n {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.i18n li {
+	display: inline-block;
+	text-align: right;
+}
+
+.i18n li img {
+	
+	width: 50%;
+}

@@ -7,22 +7,44 @@
 <c:set var="uri" value="${req.requestURI}" />
 <c:set var="base" value="${pageContext.request.contextPath}" />
 
-<jsp:directive.attribute name="title" type="java.lang.String" required="true" rtexprvalue="true" description="Title of the page" />
+<jsp:directive.attribute name="title" type="java.lang.String" required="false" rtexprvalue="true" description="Title of the page" />
 <jsp:directive.attribute name="breadcrumbs" required="false" rtexprvalue="true" />
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 	<head>
 		<title>${title}</title>
 		
-		<link rel="stylesheet" type="text/css" href="${base}/assets/lib/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="${base}/assets/lib/fontawesome/css/font-awesome.min.css">
+		<!-- jQuery -->
+		<script src="<c:url value="/assets/lib/jquery/jquery.min.js" />"></script>
+        
+        <!-- Angular JS -->
+        <script src="<c:url value="/assets/lib/angular/angular.min.js" />"></script>
+
+        <!-- Translation -->
+        <script src="<c:url value="/assets/lib/angular/angular-translate.min.js" />"></script>
+        
+        <script src="<c:url value="/assets/js/Application.js" />"></script>
+        <script src="<c:url value="/assets/js/config/DutchConfig.js" />"></script>
+        <script src="<c:url value="/assets/js/config/EnglishConfig.js" />"></script>
+        <script src="<c:url value="/assets/js/controller/BaseController.js" />"></script>
 		
-		<link rel="stylesheet" type="text/css" href="${base}/assets/css/style.css">
-		<link rel="stylesheet" type="text/css" href="${base}/assets/css/layout.css">
-		<link rel="stylesheet" type="text/css" href="${base}/assets/css/header.css">
+		
+		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/lib/bootstrap/css/bootstrap.min.css" />">
+		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/lib/fontawesome/css/font-awesome.min.css" />">
+		
+		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/style.css" />">
+		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/layout.css" />">
+		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/header.css" />">
 	</head>
-	<body>
+	<body ng-controller="BaseController">
+		<div class="overlay" ng-hide="true">
+            <div class="loader">
+                <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+		
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -32,7 +54,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 				     </button>
-			      	<a class="navbar-brand" href="${base}">${title}</a>
+				     <c:choose>
+				     	<c:when test="${title != 'Bartiméus'}">
+				     		<a class="navbar-brand" href="${base}">Bartiméus: ${title}</a>
+				     	</c:when>
+				     	<c:otherwise>
+							<a class="navbar-brand" href="${base}">Bartiméus</a>		     	
+				     	</c:otherwise>
+				     </c:choose>
+		
 			    </div>
 			    
 			    <div class="nav navbar-nav">
@@ -51,10 +81,24 @@
 			    </div>
 			      
 			    <ul class="nav navbar-nav navbar-right">
+			    	<li>
+						<ul class="i18n">
+							<li ng-if="LANG === 'en_US'">
+								<a ng-click="lang('nl_NL')">
+									<img src='<c:url value="/assets/img/nl.png" />'>
+								</a>
+							</li>
+							<li ng-if="LANG === 'nl_NL'">
+								<a ng-click="lang('en_US')">
+									<img src='<c:url value="/assets/img/uk.png" />'>
+								</a>
+							</li>
+						</ul>
+			    	</li>
 			        <li>
-			            <a href="#">
-			                <strong>Sign in/up | Logout</strong>
-			            </a>
+			        	<c:if test="${isLoggedIn}">
+			        		<a href="${base}/user/logout">Hey ${user}, <strong>{{'click_logout' | translate}}</strong></a>
+			        	</c:if>
 			        </li>
 			    </ul>	
 			</div>

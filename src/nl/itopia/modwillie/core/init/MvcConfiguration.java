@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages = "nl.itopia.modwillie.core")
+@ComponentScan(basePackages = "nl.itopia.modwillie")
 @EnableWebMvc
 @EnableAsync
 @EnableTransactionManagement
@@ -32,8 +32,8 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
     private static final String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5InnoDBDialect";
     private static final String HIBERNATE_SHOW_SQL = "true";
-    private static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "nl.itopia.willie.data.model";
-    private static final String HIBERNATE_HBM2DDL_AUTO = "create";
+    private static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "nl.itopia.modwillie.data.model";
+    private static final String HIBERNATE_HBM2DDL_AUTO = "update";
     
     private static final String HIBERNATE_DIALECT_KEY = "hibernate.dialect";
     private static final String HIBERNATE_SHOW_SQL_KEY = "hibernate.show_sql";

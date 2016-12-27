@@ -1,0 +1,31 @@
+nav {
+	background-color: rgb(41, 92, 135) !important;
+}
+
+nav a, nav .navbar-brand {
+	color: #fafafa !important; /* Grey 50 */
+}
+
+nav a:hover, nav .navbar-brand:hover {
+	color: #e0e0e0 !important; /* Grey 300 */
+}
+
+
+nav .breadcrumb {
+	margin-bottom: 0px !important;
+	background: none !important;
+	float: left;
+	padding-top: 15px;
+}
+
+@media (min-width: 768px) {
+/*     .navbar .navbar-center {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+ */}

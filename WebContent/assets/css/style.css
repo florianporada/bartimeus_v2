@@ -1,0 +1,53 @@
+.btn-success {
+	background-color: rgb(41, 92, 135);
+	border-color: rgb(45, 101, 148);
+}
+
+.btn-success:hover {
+	background: rgb(56, 135, 199);
+	border-color: rgb(60, 144, 212);
+}
+
+.btn-success:active, .btn-success:focus, .btn-success:target, .btn-success:active:focus {
+	background: rgb(38, 92, 135);
+	border-color:rgb(42, 101, 148);
+}
+
+
+
+
+.icon-button:hover {
+	color: #eeeeee;
+	background: rgb(45, 101, 148);
+	text-decoration: none;
+}
+
+.icon-button {
+	color: #fafafa;
+	text-align: center;
+	
+	border-color: red;
+	
+	background-color: rgb(41, 92, 135);
+	
+	
+	width: 200px;
+	height: auto;
+	padding-top: 10px;
+}
+
+.icon-button i.fa {
+	font-size: 100px;
+}
+
+.icon-button .label {
+	display: block;
+	font-size: 15px;
+	padding-bottom: 10px;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -14,6 +14,9 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
+					<a href="add/" class="btn btn-success btn-block">
+						<i class="fa fa-plus fa-fw"></i> {{ 'add_sensor' | translate }}
+					</a>
 				</div>
 			</div>
 		</div>

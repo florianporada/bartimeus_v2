@@ -26,6 +26,9 @@ public class BaseController {
 		crumbs.add(new MenuItem("application", "{{ 'manage_app' | translate }}", "/ModWillie/application/"));
 		crumbs.add(new MenuItem("notification", "{{ 'manage_not' | translate }}", "/ModWillie/notification/"));
 		crumbs.add(new MenuItem("sensor", "{{ 'manage_sensor' | translate }}", "/ModWillie/sensor/"));
+		
+		crumbs.add(new MenuItem("add", "{{ 'add' | translate }}", "/"));
+		crumbs.add(new MenuItem("edit", "{{ 'edit' | translate }}", "/"));
 	}
 	
 	private MenuItem getCrumb(String key) {

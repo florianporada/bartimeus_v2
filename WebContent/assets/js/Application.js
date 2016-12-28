@@ -4,6 +4,14 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		password: "Password",
 		re_password: "Retype password",
 		dashboard: "Dashboard",
+		add: "Add",
+		edit: "Edit",
+		
+		hash: "Unique ID",
+		hash_description: "The Unique ID (UID) that is present on the backside of the sensor",
+		name: "Name",
+		name_description: "A name for the Sensor, to later easily identify it",
+		
 		logged_out: "You're logged out",
 		click_logout: "Click here to logout",
 		click_login: "Click here to login",
@@ -17,6 +25,8 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		
 		login_button: "Login",
 		create_button: "Create",
+		add_sensor: "Configure a sensor",
+		new_sensor: "Add the sensor",
 		
 		create_title: "Create account",
 		login_title: "Login",
@@ -29,6 +39,14 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		username: "Gebruikersnaam",
 		password: "Wachtwoord",
 		re_password: "Hertyp wachtwoord",
+		add: "Toevoegen",
+		edit: "Veranderen",
+		
+		hash: "Unieke ID",
+		hash_description: "De Unieke ID (UID) die op de achterkant van de sensor staat",
+		name: "Naam",
+		name_description: "Een naam voor de Sensor, om later makkelijk terug te zien over welke Sensor het precies gaat",
+		
 		dashboard: "Dashboard",
 		logged_out: "U bent uitgelogd",
 		click_logout: "Klik hier om uit te loggen",
@@ -43,6 +61,8 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		
 		login_button: "Inloggen",
 		create_button: "Creëer uw account",
+		add_sensor: "Configureer een sensor",
+		new_sensor: "Voeg de nieuwe sensor toe",
 		
 		create_title: "Creëer een account",
 		login_title: "Inloggen",

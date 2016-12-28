@@ -1,0 +1,45 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
+
+<c:set var="url" value="${requestScope['javax.servlet.forward.request_uri']}" />
+<t:layout title="{{ 'add_sensor' | translate }}">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ 'manage_sensor' | translate }}</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<c:if test="${param.error}">
+						{{ 'login_error' | translate }}
+					</c:if>
+					<form:form method="post" modelAttribute="sensor" cssClass="input-form">
+						<div class="form-group">
+							<label for="name">{{ 'name' | translate }}</label>
+							<div class="form-description">{{ 'name_description' | translate }}</div>
+							<form:input path="name" type="text" id="name" placeholder="{{ 'name' | translate }}" cssClass="form-control"/>
+							<form:errors path="name" />
+						</div>
+						<div class="form-group">
+							<label for="hash">{{ 'hash' | translate }}</label>
+							<div class="form-description">{{ 'hash_description' | translate }}</div>
+							<form:input path="hash" type="text" id="hash" placeholder="{{ 'hash' | translate }}" cssClass="form-control"/>
+							<form:errors path="hash" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-block">
+								<i class="fa fa-plus fa-fw"></i> {{ 'new_sensor' | translate }}
+							</button>
+						</div>
+						
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+</t:layout>

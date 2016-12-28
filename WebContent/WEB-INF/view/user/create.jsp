@@ -8,9 +8,9 @@
 
 <t:layout title="{{ 'create_title' | translate }}">
 	<div class="col-md-10 col-xs-12 col-centered" style="background-color: white;">
-	<c:if test="${param.error}">
-		{{ 'login_error' | translate }}
-	</c:if>
+		<c:if test="${param.error}">
+			{{ 'login_error' | translate }}
+		</c:if>
 		<form:form method="post" modelAttribute="user" cssClass="input-form">
 			<div class="form-group">
 				<label for="name">{{ 'username' | translate }}</label>

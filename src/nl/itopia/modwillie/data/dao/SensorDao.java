@@ -28,6 +28,11 @@ public class SensorDao {
 		session.update(sensor);
 	}
 
+	public void deleteSensor(Sensor sensor) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.delete(sensor);
+	}
+
 	public void removeSensor(int id) {
 		final Session session = sessionFactory.getCurrentSession();
 		Sensor sensor = getSensor(id);
@@ -53,6 +58,15 @@ public class SensorDao {
 		final Session session = sessionFactory.getCurrentSession();
 		final String hql = "from Sensor";
 		final Query query = session.createQuery(hql);
+		return (List<Sensor>) query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Sensor> getSensorsForUser(long id) {
+		final Session session = sessionFactory.getCurrentSession();
+		final String hql = "from Sensor s where s.user.id = :id";
+		final Query query = session.createQuery(hql);
+		query.setParameter("id", id);
 		return (List<Sensor>) query.list();
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import nl.itopia.modwillie.data.dao.SensorDao;
 import nl.itopia.modwillie.data.model.Sensor;
+import nl.itopia.modwillie.data.model.User;
 
 @Service
 @Transactional
@@ -23,6 +24,10 @@ public class SensorService {
 		sensorDao.updateSensor(sensor);
 	}
 	
+	public void deleteSensor(Sensor sensor) {
+		sensorDao.deleteSensor(sensor);
+	}
+	
 	public String hashPassword(String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();		
 		return encoder.encode(password);
@@ -34,5 +39,13 @@ public class SensorService {
 	
 	public List<Sensor> getSensors() {
 		return sensorDao.getSensors();
+	}
+
+	public List<Sensor> getSensorsForUser(User user) {
+		return getSensorsForUser(user.getId());
+	}
+	
+	public List<Sensor> getSensorsForUser(long id) {
+		return sensorDao.getSensorsForUser(id);
 	}
 }

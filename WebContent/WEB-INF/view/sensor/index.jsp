@@ -14,6 +14,22 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-12">
+					<ul class="striped-list">
+						<c:forEach items="${sensors}" var="sensor">
+							<li>
+								${sensor.name}
+								<div class="toolbox">
+									<a href="edit/${sensor.id}">
+										<i class="fa fa-pencil fa-fw"></i>
+									</a>
+									<a href="delete/${sensor.id}">
+										<i class="fa fa-trash fa-fw"></i>
+									</a>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
+				
 					<a href="add/" class="btn btn-success btn-block">
 						<i class="fa fa-plus fa-fw"></i> {{ 'add_sensor' | translate }}
 					</a>

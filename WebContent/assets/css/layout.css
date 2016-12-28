@@ -59,6 +59,10 @@ body {
 	float: right;
 }
 
+.toolbox a:hover {
+	text-decoration: none;
+}
+
 .set-right {
 	clear: both;
 	float: right;
@@ -139,9 +143,10 @@ body {
 .i18n li {
 	display: inline-block;
 	text-align: right;
+	
 }
 
 .i18n li img {
-	
+	cursor: pointer;
 	width: 50%;
 }

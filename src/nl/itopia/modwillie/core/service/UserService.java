@@ -1,5 +1,6 @@
 package nl.itopia.modwillie.core.service;
 
+import java.security.Principal;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,9 @@ public class UserService {
 	
 	public List<User> getUsers() {
 		return userDao.getUsers();
+	}
+
+	public User getUser(Principal principal) {
+		return userDao.getUserWithName(principal.getName());
 	}
 }

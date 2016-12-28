@@ -27,6 +27,7 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		create_button: "Create",
 		add_sensor: "Configure a sensor",
 		new_sensor: "Add the sensor",
+		edit_sensor: "Edit the sensor",
 		
 		create_title: "Create account",
 		login_title: "Login",
@@ -63,6 +64,7 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		create_button: "Creëer uw account",
 		add_sensor: "Configureer een sensor",
 		new_sensor: "Voeg de nieuwe sensor toe",
+		edit_sensor: "Verander de sensor",
 		
 		create_title: "Creëer een account",
 		login_title: "Inloggen",

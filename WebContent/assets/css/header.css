@@ -1,5 +1,17 @@
 nav {
 	background-color: rgb(41, 92, 135) !important;
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+	border: none !important;
+}
+
+nav:after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 5px;
+	background-color: #2683C6;
 }
 
 nav a, nav .navbar-brand {

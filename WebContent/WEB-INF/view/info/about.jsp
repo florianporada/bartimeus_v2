@@ -30,7 +30,7 @@
 		
 		<div class="col-md-4  article">
 			<div class="title">
-				<img src='<c:url value="/assets/img/willie_logo.png"/>' />
+				<img src='<c:url value="/assets/img/willie_logo"/>' />
 				<h1>{{ 'app_description_title' | translate }}</h1>
 			</div>
 			<div class="description">

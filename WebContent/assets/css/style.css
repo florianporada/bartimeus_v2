@@ -99,3 +99,8 @@
 	display: block;
 	width: 100%;
 }
+
+
+.notification label {
+	font-weight: normal !important;
+}

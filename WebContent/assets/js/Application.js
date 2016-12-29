@@ -1,4 +1,4 @@
-var app = angular.module("app", ["pascalprecht.translate"]).config(function($translateProvider) {
+var app = angular.module("app", ["pascalprecht.translate", "monospaced.qrcode"]).config(function($translateProvider) {
 	$translateProvider.translations("en_US", {
 		username: "Username",
 		password: "Password",

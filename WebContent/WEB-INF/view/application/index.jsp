@@ -5,7 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 
-<c:set var="url" value="${requestScope['javax.servlet.forward.request_uri']}" />
-<t:layout title="Bartiméus">
-	<h1>Hey</h1>
+<t:layout title="{{ 'manage_app' | translate }}">
+	<div class="col-md-12" style="background-color: white; padding: 10px;">
+		<div class="col-md-6 col-sm-12 flex-center">
+			<qrcode data="string" size="300"></qrcode>
+		</div>
+	</div>
 </t:layout>

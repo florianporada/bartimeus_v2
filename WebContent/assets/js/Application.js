@@ -12,6 +12,13 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		name: "Name",
 		name_description: "A name for the Sensor, to later easily identify it",
 		
+		about_description_title: "About Bartiméus",
+		about_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet quam sit amet diam convallis, ut mollis lacus scelerisque. Maecenas sit amet lorem vitae velit vulputate elementum eget vel odio. In ac bibendum ex. Nulla facilisi.",
+		project_description_title: "About the project",
+		project_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet quam sit amet diam convallis, ut mollis lacus scelerisque. Maecenas sit amet lorem vitae velit vulputate elementum eget vel odio. In ac bibendum ex. Nulla facilisi.",
+		app_description_title: "About the app",
+		app_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet quam sit amet diam convallis, ut mollis lacus scelerisque. Maecenas sit amet lorem vitae velit vulputate elementum eget vel odio. In ac bibendum ex. Nulla facilisi.",
+		
 		logged_out: "You're logged out",
 		click_logout: "Click here to logout",
 		click_login: "Click here to login",
@@ -50,6 +57,13 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		hash_description: "De Unieke ID (UID) die op de achterkant van de sensor staat",
 		name: "Naam",
 		name_description: "Een naam voor de Sensor, om later makkelijk terug te zien over welke Sensor het precies gaat",
+		
+		about_description_title: "Over Bartiméus",
+		about_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet quam sit amet diam convallis, ut mollis lacus scelerisque. Maecenas sit amet lorem vitae velit vulputate elementum eget vel odio. In ac bibendum ex. Nulla facilisi.",
+		project_description_title: "Over het project",
+		project_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet quam sit amet diam convallis, ut mollis lacus scelerisque. Maecenas sit amet lorem vitae velit vulputate elementum eget vel odio. In ac bibendum ex. Nulla facilisi.",
+		app_description_title: "Over de app",
+		app_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet quam sit amet diam convallis, ut mollis lacus scelerisque. Maecenas sit amet lorem vitae velit vulputate elementum eget vel odio. In ac bibendum ex. Nulla facilisi.",
 		
 		dashboard: "Dashboard",
 		logged_out: "U bent uitgelogd",

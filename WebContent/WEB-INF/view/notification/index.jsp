@@ -6,7 +6,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 
 <c:set var="url" value="${requestScope['javax.servlet.forward.request_uri']}" />
-<t:layout title="Bartiméus">
+<t:layout title="{{ 'manage_not' | translate }}">
 	<div class="col-md-12" style="background-color: white; padding-bottom: 20px;">
 		<div class="col-md-4 notification">
 			<h3>{{ 'incomming_notification' | translate }}</h3>

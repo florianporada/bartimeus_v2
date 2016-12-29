@@ -22,6 +22,13 @@
 						<form:hidden path="user.id"/>
 						
 						<div class="form-group">
+							<label for="qr">QR</label>
+							<div class="form-description">The sensor has a QR code on the back. Use the camera on your mobile to scan this number</div>
+							<qrcode data="${sensor.hash}" size="200"></qrcode>
+							<button type="button" class="btn btn-success">Scan</button>
+						</div>
+						
+						<div class="form-group">
 							<label for="name">{{ 'name' | translate }}</label>
 							<div class="form-description">{{ 'name_description' | translate }}</div>
 							<form:input path="name" type="text" id="name" placeholder="{{ 'name' | translate }}" cssClass="form-control"/>

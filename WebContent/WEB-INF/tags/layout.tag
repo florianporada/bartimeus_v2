@@ -60,10 +60,10 @@
 				     </button>
 				     <c:choose>
 				     	<c:when test="${title != 'Bartiméus'}">
-				     		<a class="navbar-brand" href="${base}">Bartiméus: ${title}</a>
+				     		<a class="navbar-brand" href="<c:url value="/" />">Bartiméus: ${title}</a>
 				     	</c:when>
 				     	<c:otherwise>
-							<a class="navbar-brand" href="${base}">Bartiméus</a>		     	
+							<a class="navbar-brand" href="<c:url value="/" />">Bartiméus</a>		     	
 				     	</c:otherwise>
 				     </c:choose>
 		

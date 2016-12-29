@@ -36,6 +36,7 @@
 		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/style.css" />">
 		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/layout.css" />">
 		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/header.css" />">
+		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/footer.css" />">
 	</head>
 	<body ng-controller="BaseController">
 		<div class="overlay" ng-hide="true">
@@ -111,5 +112,17 @@
 				</div>
 			</div>
 		</div>
+
+		<footer class="footer">
+			<div class="fluid-container">
+				<ul class="links">
+					<li><a href="https://theassistant.io">TheAssistant.io</a></li>
+					<li><a href="<c:url value="/info/about" />">{{ 'about_title' | translate }}</a></li>
+					<li><a href="<c:url value="/info/privacy" />">{{ 'privacy_title' | translate }}</a></li>
+					<li><a href="<c:url value="/info/terms" />">{{ 'terms_title' | translate }}</a></li>
+				</ul>
+				<p class="text">&copy; 2016, Team Dream Team</p>
+			</div>
+		</footer>
 	</body>
 </html>

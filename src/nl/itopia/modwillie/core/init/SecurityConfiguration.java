@@ -24,14 +24,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/assets/**").permitAll()
-				.antMatchers("/user/create/").permitAll()
-				.anyRequest().authenticated()
+				.antMatchers("/info/**").permitAll() // Allow the information pages to be shown to everyone
+				.antMatchers("/assets/**").permitAll() // Allow everyone to receive the assets
+				.antMatchers("/user/create/").permitAll() // Allow everyone to create an account
+				.anyRequest().authenticated() // The rest of the pages should be hidden
 				.and()
 			.formLogin()
-//				.defaultSuccessUrl("/", true)
-				.loginPage("/user/login/").permitAll()
-				.and().csrf()
+				.loginPage("/user/login/").permitAll() // Allow the user to login
+				.and().csrf() // Add CSRF tokens so you can't call the URL from a script
 				.and()
 			.logout()
 				.permitAll();

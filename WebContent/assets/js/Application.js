@@ -34,6 +34,9 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		logout_title: "Logout",
 		user_title: "User",
 		home_title: "Home",
+		about_title: "About",
+		privacy_title: "Privacy",
+		terms_title: "Terms",
 	});
 	
 	$translateProvider.translations("nl_NL", {
@@ -71,6 +74,9 @@ var app = angular.module("app", ["pascalprecht.translate"]).config(function($tra
 		logout_title: "Uitloggen",
 		user_title: "Gebruiker",
 		home_title: "Home",
+		about_title: "Over",
+		privacy_title: "Privacy",
+		terms_title: "Voorwaarden",
 	});
 	
     var language = window.localStorage.getItem("language") || "nl_NL";

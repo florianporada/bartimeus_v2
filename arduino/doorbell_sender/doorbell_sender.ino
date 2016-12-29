@@ -22,10 +22,13 @@
 
 #define MAX_FINGERPRINTS 255
 
-#define ID 5
+#define ID 1645837938 // 239C04B7
 
 #define RING_ACTION 0
 #define REGISTER_ACTION 1
+
+RF24 radio(9, 10);
+const byte pipe[6] = "00001";
 
 typedef struct {
     int id;
@@ -49,6 +52,13 @@ Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 void setup() {
     currentState = FINGER_STATE;
     lastTick = -1;
+
+    data.id = ID;
+    radio.begin();
+    radio.setRetries(15, 15);
+    radio.setPALevel(RF24_PA_MAX);
+    radio.openWritingPipe(pipe);
+    radio.stopListening();
     
     pinMode(REGISTER_BUTTON, INPUT);
     pinMode(RESET_BUTTON, INPUT);
@@ -252,15 +262,17 @@ byte getNextID() {
 }
 
 void sendId(int id) {
-    data.id = ID;
     data.action = RING_ACTION;
     data.value = id;
     Serial.print("Sending ID: ");
     Serial.println(id);
+    radio.write(&data, sizeof(data));
 }
 
 void sendRegisterId(int id) {
-    data.id = ID;
     data.action = REGISTER_ACTION;
     data.value = id;
+    Serial.print("Sending Register ID: ");
+    Serial.println(id);
+    radio.write(&data, sizeof(data));
 }

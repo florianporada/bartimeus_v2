@@ -8,6 +8,7 @@
 
 <t:layout title="{{ 'terms_title' | translate }}">
 	<div class="col-md-12" style="background-color: white;">
-		
+		<h2>{{ 'terms_description_title' | translate }}</h2>
+		<p>{{ 'terms_description' | translate }}</p>
 	</div>
 </t:layout>

@@ -8,6 +8,7 @@
 
 <t:layout title="{{ 'privacy_title' | translate }}">
 	<div class="col-md-12" style="background-color: white;">
-		
+		<h2>{{ 'privacy_description_title' | translate }}</h2>
+		<p>{{ 'privacy_description' | translate }}</p>
 	</div>
 </t:layout>

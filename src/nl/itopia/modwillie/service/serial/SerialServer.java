@@ -26,6 +26,7 @@ public class SerialServer {
 	}
 	
 	public void send(ChannelData data) {
+		System.out.println("Sending: "+data);
 		server.getBroadcastOperations().sendEvent("serial", data);
 	}
 	

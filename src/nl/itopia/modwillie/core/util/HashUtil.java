@@ -10,12 +10,13 @@ import javax.xml.bind.DatatypeConverter;
 public class HashUtil {
 	private static final String HASH_ALGORITHM = "sha-256";
 	private static final String DEFAULT_ENCODING = "UTF-8";
+	private static final int MAX_INT = 32767; // https://www.arduino.cc/en/Reference/Int
 	
 	private static final int SIMPLE_HASH_LENGTH = 8;
 	
 	public static int getNewID() {
 		Random random = new Random();
-		return random.nextInt(Integer.MAX_VALUE);
+		return random.nextInt(MAX_INT);
 	}
 	
 	public static String simpleHash(String msg) {

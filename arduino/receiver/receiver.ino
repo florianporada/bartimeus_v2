@@ -31,7 +31,6 @@ void setup() {
     radio.setPALevel(RF24_PA_MAX);
 
     radio.startListening();
-    Serial.println("Starting");
 } 
 
 void loop() {

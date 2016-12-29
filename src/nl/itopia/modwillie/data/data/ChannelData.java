@@ -1,46 +1,50 @@
 package nl.itopia.modwillie.data.data;
 
-import com.ibm.json.java.JSONArray;
 import com.ibm.json.java.JSONObject;
 
 public class ChannelData {
-	private Long id;
-	private Long[] channels;
+	private Integer id;
+	private Integer action;
+	private Integer value;
 	
 	public ChannelData() {
-		this(-1L, new Long[]{});
 	}
-	
-	public ChannelData(Long id, Long[] channels) {
+
+	public ChannelData(Integer id, Integer action, Integer value) {
 		this.id = id;
-		this.channels = channels;
+		this.action = action;
+		this.value = value;
 	}
-	
-	public Long getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	
-	public void setId(Long id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	public Long[] getChannels() {
-		return channels;
+
+	public Integer getAction() {
+		return action;
 	}
-	
-	public void setChannels(Long[] channels) {
-		this.channels = channels;
+
+	public void setAction(Integer action) {
+		this.action = action;
 	}
-	
+
+	public Integer getValue() {
+		return value;
+	}
+
+	public void setValue(Integer value) {
+		this.value = value;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject json = new JSONObject();
 		json.put("id", id);
-		
-		JSONArray array = new JSONArray();
-		for(Long channel : channels) {
-			array.add(channel);
-		}
-		json.put("channels", array);
+		json.put("action", action);
+		json.put("value", value);
 		
 		return json;
 	}

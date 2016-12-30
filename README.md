@@ -83,7 +83,7 @@ There are multiple ways to run it, this are two that I regularly use
 
 27) The server will be downloaded
 
-28) Choose a \'Keystore password\' and unselect the option: 'Add basic user registry'
+28) Choose a 'Keystore password' and unselect the option: 'Add basic user registry'
     1) Press the 'Set...' button
     2) Enter a password
     3) Press the 'OK' button

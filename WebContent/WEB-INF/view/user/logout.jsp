@@ -7,7 +7,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <t:layout title="{{ 'logout_title' | translate }}">
-	<div class="col-md-10 col-xs-12 col-centered" style="background-color: rgb(41, 92, 135); color: #FAFAFA">
+	<div class="col-md-10 col-xs-12 col-centered" style="background-color: white;">
 		<p class="logout">{{ 'logged_out' | translate }} <a href="../">{{ 'click_login' | translate }}</a></p>
 	</div>
 </t:layout>

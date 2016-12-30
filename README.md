@@ -53,7 +53,7 @@ There are multiple ways to run it, this are two that I regularly use
 
 13) The server's name: 'localhost'
 
-    * The checkbox: 'Always use this server when running this project' is optional and is up to you if you want that behaviour.
+    * The checkbox 'Always use this server when running this project' is optional and is up to you if you want that behaviour.
     
 14) Press the 'Next' button
 

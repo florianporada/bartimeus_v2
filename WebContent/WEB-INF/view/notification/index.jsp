@@ -10,7 +10,7 @@
 <t:layout title="{{ 'manage_not' | translate }}">
 	<form name="notificationForm" class="col-md-12" style="background-color: white; padding-bottom: 20px;" ng-controller="NotificationController" method="POST">
 		<div class="col-md-4 notification">
-			<input type="hidden" name="incomming" value="-1"/>
+			<input type="hidden" name="incomming" value="${userIncomming.id}"/>
 			<h3>{{ 'incomming_notification' | translate }}</h3>
 			<div class="list-group">
 				<c:forEach items="${patternsIncomming}" var="pattern" varStatus="itt">
@@ -27,7 +27,7 @@
 		</div>
 		
 		<div class="col-md-4 notification">
-			<input type="hidden" name="vibration" value="-1"/>
+			<input type="hidden" name="vibration" value="${userVibration.id}"/>
 			<h3>{{ 'vibration_notification' | translate }}</h3>
 			<div class="list-group">
 				<c:forEach items="${patternsVibration}" var="pattern" varStatus="itt">
@@ -44,7 +44,7 @@
 		</div>
 		
 		<div class="col-md-4 notification">
-			<input type="hidden" name="vibration_cont" value="-1"/>
+			<input type="hidden" name="vibration_cont" value="${userVibrationCont.id}"/>
 			<h3>{{ 'vibration_cont_notification' | translate }}</h3>
 			<div class="list-group">
 				<c:forEach items="${patternsVibrationCont}" var="pattern" varStatus="itt">

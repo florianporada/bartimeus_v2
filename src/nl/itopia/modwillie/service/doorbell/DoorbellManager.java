@@ -9,10 +9,12 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import nl.itopia.modwillie.core.service.SensorService;
+import nl.itopia.modwillie.core.service.UserService;
 import nl.itopia.modwillie.data.data.ChannelAction;
 import nl.itopia.modwillie.data.data.ChannelData;
 import nl.itopia.modwillie.data.model.Pattern;
 import nl.itopia.modwillie.data.model.Sensor;
+import nl.itopia.modwillie.data.model.User;
 import nl.itopia.modwillie.service.doorbell.data.DoorbellListener;
 
 @Async
@@ -28,6 +30,9 @@ public class DoorbellManager {
 	
 	@Autowired
 	private SensorService sensorService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@EventListener({ContextRefreshedEvent.class})
 	public void start() throws URISyntaxException {
@@ -89,14 +94,20 @@ public class DoorbellManager {
 	
 	public void sendTestNotification(Pattern pattern) {
 		// TODO: Send a notification to the watch which should try to use this pattern
-//		System.out.println("[DoorbellManager] Send TEST, with pattern: "+pattern.getPattern());
 		System.out.println("[DoorbellManager] Send TEST, with pattern: "+pattern);
 	}
 	
 	public void sendNotification(Sensor sensor) {
-//		System.out.println("[DoorbellManager.sendNotification] ");
 		System.out.println("[DoorbellManager.sendNotification] Get the pattern that is used");
+		// The patterns are on FetchType.EAGER, so if we access it from the sensor, we won't actually get the patterns
+		long userId = sensor.getUser().getId();
+		User user = userService.getUser(userId);
 		
+		System.out.println("[DoorbellManager.sendNotification] Incomming: "+user.getIncommingPattern());
+		System.out.println("[DoorbellManager.sendNotification] Vibration: "+user.getVibrationPattern());
+		System.out.println("[DoorbellManager.sendNotification] VibrationCont: "+user.getVibrationContPattern());
+		
+		// TODO: Send a message to the watch with the given patterns
 	}
 	
 	public void registerUser(Sensor sensor) {

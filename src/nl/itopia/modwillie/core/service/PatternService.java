@@ -37,4 +37,8 @@ public class PatternService {
 	public List<Pattern> getPatterns() {
 		return patternDao.getPatterns();
 	}
+
+	public Pattern getFirstPattern(NotificationType type) {
+		return patternDao.getFirstPattern(type);
+	}
 }

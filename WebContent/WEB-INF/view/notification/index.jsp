@@ -6,6 +6,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 
 <c:set var="url" value="${requestScope['javax.servlet.forward.request_uri']}" />
+
 <t:layout title="{{ 'manage_not' | translate }}">
 	<form name="notificationForm" class="col-md-12" style="background-color: white; padding-bottom: 20px;" ng-controller="NotificationController" method="POST">
 		<div class="col-md-4 notification">
@@ -13,7 +14,11 @@
 			<h3>{{ 'incomming_notification' | translate }}</h3>
 			<div class="list-group">
 				<c:forEach items="${patternsIncomming}" var="pattern" varStatus="itt">
-					<a class="list-group-item" data-id='${pattern.id}'>
+					<c:set var="addClass" value="" />
+					<c:if test="${userIncomming.id == pattern.id}">
+						<c:set var="addClass" value="active"/>
+					</c:if>
+					<a class="list-group-item ${addClass}" data-id='${pattern.id}'>
 						<span class="badge" ng-click="test(${pattern.id})"><i class="fa fa-play fa-fw"></i></span>
 						<label>${itt.index + 1}: ${pattern.pattern}</label>
 				  	</a>
@@ -26,7 +31,11 @@
 			<h3>{{ 'vibration_notification' | translate }}</h3>
 			<div class="list-group">
 				<c:forEach items="${patternsVibration}" var="pattern" varStatus="itt">
-					<a class="list-group-item" data-id='${pattern.id}'>
+					<c:set var="addClass" value="" />
+					<c:if test="${userVibration.id == pattern.id}">
+						<c:set var="addClass" value="active"/>
+					</c:if>
+					<a class="list-group-item ${addClass}" data-id='${pattern.id}'>
 						<span class="badge" ng-click="test(${pattern.id})"><i class="fa fa-play fa-fw"></i></span>
 						<label>${itt.index + 1}: ${pattern.pattern}</label>
 				  	</a>
@@ -39,7 +48,11 @@
 			<h3>{{ 'vibration_cont_notification' | translate }}</h3>
 			<div class="list-group">
 				<c:forEach items="${patternsVibrationCont}" var="pattern" varStatus="itt">
-					<a class="list-group-item" data-id='${pattern.id}'>
+					<c:set var="addClass" value="" />
+					<c:if test="${userVibrationCont.id == pattern.id}">
+						<c:set var="addClass" value="active"/>
+					</c:if>
+					<a class="list-group-item ${addClass}" data-id='${pattern.id}'>
 						<span class="badge" ng-click="test(${pattern.id})"><i class="fa fa-play fa-fw"></i></span>
 						<label>${itt.index + 1}: ${pattern.pattern}</label>
 				  	</a>

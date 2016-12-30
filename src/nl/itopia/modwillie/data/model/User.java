@@ -6,9 +6,14 @@ package nl.itopia.modwillie.data.model;
  */
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Where;
 
 import com.sun.istack.NotNull;
 
@@ -26,6 +31,18 @@ public class User {
 	
 	@Transient
 	private String rePassword;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@Where(clause="type='INCOMMING'")
+	private Pattern incommingPattern;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@Where(clause="type='VIBRATION'")
+	private Pattern vibrationPattern;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@Where(clause="type='VIBRATION_CONT'")
+	private Pattern vibrationContPattern;
 	
 	public User() {}
 	
@@ -66,10 +83,35 @@ public class User {
 	public void setRePassword(String rePassword) {
 		this.rePassword = rePassword;
 	}
+	
+	public Pattern getIncommingPattern() {
+		return incommingPattern;
+	}
+
+	public void setIncommingPattern(Pattern incommingPattern) {
+		this.incommingPattern = incommingPattern;
+	}
+
+	public Pattern getVibrationPattern() {
+		return vibrationPattern;
+	}
+
+	public void setVibrationPattern(Pattern vibrationPattern) {
+		this.vibrationPattern = vibrationPattern;
+	}
+
+	public Pattern getVibrationContPattern() {
+		return vibrationContPattern;
+	}
+
+	public void setVibrationContPattern(Pattern vibrationContPattern) {
+		this.vibrationContPattern = vibrationContPattern;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", rePassword=" + rePassword
-				+ "]";
+				+ ", incommingPattern=" + incommingPattern + ", vibrationPattern=" + vibrationPattern
+				+ ", vibrationContPattern=" + vibrationContPattern + "]";
 	}
 }

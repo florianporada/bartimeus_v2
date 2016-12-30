@@ -71,4 +71,18 @@ public class PatternDao {
 		query.setParameter("type", type);
 		return (List<Pattern>) query.list();
 	}
+
+	public Pattern getFirstPattern(NotificationType type) {
+		final Session session = sessionFactory.getCurrentSession();
+		final String hql = "from Pattern p where p.type=:type";
+		final Query query = session.createQuery(hql);
+		query.setParameter("type", type);
+		
+		List<?> items = query.list();
+		if(items.size() > 0) {
+			return (Pattern) items.get(0);
+		}
+		
+		return null;
+	}
 }

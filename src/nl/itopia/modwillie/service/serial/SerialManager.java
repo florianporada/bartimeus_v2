@@ -1,4 +1,8 @@
 package nl.itopia.modwillie.service.serial;
+/**
+ * The SerialManager will open a serial port and send the data to the SerialServer. 
+ * If the Port can't be opened RETRY_COUNT retries are made.
+ */
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,11 +11,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-
 import com.fazecast.jSerialComm.SerialPort;
-import com.ibm.json.java.JSONArray;
 import com.ibm.json.java.JSONObject;
 
+import nl.itopia.modwillie.core.helper.CouldNotStartException;
 import nl.itopia.modwillie.core.util.JSONUtil;
 import nl.itopia.modwillie.data.data.ChannelData;
 
@@ -20,7 +23,8 @@ import nl.itopia.modwillie.data.data.ChannelData;
 public class SerialManager {
 	private static final String SERIAL_PORT_NAME = "COM4";
 	private static final byte NEW_LINE_BYTE = '\n';
-	private static final int BUFFER_SIZE = 1024;
+	private static final int RETRY_COUNT = 10;
+	private static final int RETRY_DELAY = 3000;
 	
 	private SerialServer server;
 	private SerialPort serialPort;
@@ -29,7 +33,7 @@ public class SerialManager {
 	private boolean halt;
 	
 	@EventListener({ContextRefreshedEvent.class})
-	public void start() throws IOException {
+	public void start() throws IOException, CouldNotStartException {
 		halt = false;
 		server = new SerialServer();
 		System.out.println("Starting serialManager");
@@ -48,9 +52,11 @@ public class SerialManager {
 		serialPort.setBaudRate(9600);
 		serialPort.openPort();
 		serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 0, 0);
-		input = serialPort.getInputStream();
-		// Retry to to get the input if none is available!
+		input = getInputStream(serialPort);
 		
+		if(input != null) {
+			throw new CouldNotStartException();
+		}
 		
 		String line = "";
 		while(!halt) {
@@ -76,7 +82,39 @@ public class SerialManager {
 		}
 	}
 	
+	/**
+	 * Get the input stream of a serial port. If it isn't available, retry it RETRY_COUNT times.  
+	 * @param port SerialPort
+	 * @return A input stream of the Serial port
+	 */
+	private InputStream getInputStream(SerialPort port) {
+		InputStream in = null;
+		int tries = 0;
+		do {
+			in = port.getInputStream();
+			
+			if(in == null) {
+				tries ++;
+				System.out.println("[SerialManager] ["+tries+"/"+RETRY_COUNT+"]Didn't get a InputStream, retrieng in "+RETRY_DELAY+" seconds.");
+				try {
+					Thread.sleep(RETRY_DELAY);
+				} catch (InterruptedException e) {
+					break;
+				}
+			}
+			
+		} while(tries < RETRY_COUNT || in != null);
+		
+		
+		return in;
+	}
 	
+	/**
+	 * Validate whether a line is a valid ChannelData object.
+	 * @param line A string containing that could contain the JSON ChannelData
+	 * @return A ChannelData object, or a null if the line wasn't valid
+	 * @throws IOException
+	 */
 	private ChannelData validateLine(String line) throws IOException {
 		if(JSONUtil.isValid(line)) {
 			JSONObject json = JSONObject.parse(line);
@@ -95,6 +133,12 @@ public class SerialManager {
 		return null;
 	}
 	
+	/**
+	 * Check if a given byte is in a byte array
+	 * @param arr
+	 * @param obj
+	 * @return If it the array contains the byte
+	 */
 	private boolean contains(byte[] arr, byte obj) {
 		for(byte a : arr) {
 			if (a == obj) {

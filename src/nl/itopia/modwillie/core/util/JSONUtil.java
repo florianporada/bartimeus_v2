@@ -6,9 +6,9 @@ import com.ibm.json.java.JSONObject;
 
 public class JSONUtil {
 	/**
-	 * Checks if the provided JSON is a valid json object
+	 * Checks if the provided JSON is a valid JSON object
 	 * @param data
-	 * @return
+	 * @return A boolean if the data is valid JSON
 	 */
 	public static boolean isValid(String data) {
 		try {

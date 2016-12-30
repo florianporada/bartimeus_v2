@@ -14,16 +14,31 @@ public class HashUtil {
 	
 	private static final int SIMPLE_HASH_LENGTH = 8;
 	
+	/**
+	 * Get a new ID. This should mostly be used for generating new sensors. The bounds is between 0 and 32,767.
+	 * Which is the max int for Arduino (https://www.arduino.cc/en/Reference/Int).
+	 * @return
+	 */
 	public static int getNewID() {
 		Random random = new Random();
 		return random.nextInt(MAX_INT);
 	}
 	
+	/**
+	 * Generate a hash that is more easy to type. The simple hash is a normal hash, with a length of SIMPLE_HASH_LENGTH
+	 * @param msg
+	 * @return
+	 */
 	public static String simpleHash(String msg) {
 		String hash = hash(msg);
 		return hash.substring(0, SIMPLE_HASH_LENGTH);
 	}
 	
+	/**
+	 * Generate a HASH_ALGORITHM hash with the given message.
+	 * @param msg String of the message to be hashed
+	 * @return A hashed message
+	 */
 	public static String hash(String msg) {
 		String out = "";
 		try {

@@ -1,5 +1,9 @@
 package nl.itopia.modwillie.service.serial;
 
+/**
+ * The SerialServer will open a SocketServer and broadcast the given ChannelData's.
+ */
+
 import java.io.IOException;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOServer;

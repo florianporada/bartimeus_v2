@@ -49,12 +49,14 @@ public class SerialManager {
 		if(serialPort == null) {
 			serialPort = ports[0];
 		}
+		
 		serialPort.setBaudRate(9600);
 		serialPort.openPort();
 		serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 0, 0);
 		input = getInputStream(serialPort);
 		
-		if(input != null) {
+		System.out.println("[SerialManager] Got input: "+input);
+		if(input == null) {
 			throw new CouldNotStartException();
 		}
 		
@@ -90,12 +92,13 @@ public class SerialManager {
 	private InputStream getInputStream(SerialPort port) {
 		InputStream in = null;
 		int tries = 0;
+		
 		do {
 			in = port.getInputStream();
 			
 			if(in == null) {
 				tries ++;
-				System.out.println("[SerialManager] ["+tries+"/"+RETRY_COUNT+"]Didn't get a InputStream, retrieng in "+RETRY_DELAY+" seconds.");
+				System.out.println("[SerialManager] ["+tries+"/"+RETRY_COUNT+"] Didn't get a InputStream, retrying in "+RETRY_DELAY+" seconds.");
 				try {
 					Thread.sleep(RETRY_DELAY);
 				} catch (InterruptedException e) {
@@ -103,7 +106,7 @@ public class SerialManager {
 				}
 			}
 			
-		} while(tries < RETRY_COUNT || in != null);
+		} while(!halt && in == null && tries < RETRY_COUNT);
 		
 		
 		return in;
@@ -126,6 +129,7 @@ public class SerialManager {
 			channelData.setId(id.intValue());
 			channelData.setAction(action.intValue());
 			channelData.setValue(value.intValue());
+			System.out.println("[SerialManager] Got channelData: "+channelData);
 			
 			return channelData;
 		}

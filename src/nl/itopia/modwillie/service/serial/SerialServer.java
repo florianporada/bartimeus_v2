@@ -13,6 +13,7 @@ import nl.itopia.modwillie.data.data.ChannelData;
 public class SerialServer {
 	public static final int DEFAULT_PORT = 9092;
 	public static final String DEFAULT_HOST = "localhost";
+	private static final String SOCKET_EVENT = "serial";
 	
 	private final SocketIOServer server;
 	
@@ -30,8 +31,8 @@ public class SerialServer {
 	}
 	
 	public void send(ChannelData data) {
-		System.out.println("Sending: "+data);
-		server.getBroadcastOperations().sendEvent("serial", data);
+		System.out.println("[SerialServer] Sending to "+SOCKET_EVENT+" with data: "+data);
+		server.getBroadcastOperations().sendEvent(SOCKET_EVENT, data);
 	}
 	
 	public void stop() {

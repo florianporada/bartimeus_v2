@@ -78,7 +78,7 @@
 			    					<li class="breadcrumb-item active">${crumb.name}</li>
 			    				</c:when>
 			    				<c:otherwise>
-			    					<li class="breadcrumb-item"><a href="${crumb.url}">${crumb.name}</a></li>
+			    					<li class="breadcrumb-item"><a href='<c:url value="${crumb.url}"/>'>${crumb.name}</a></li>
 			    				</c:otherwise>
 			    			</c:choose>
 			    		</c:forEach>

@@ -20,18 +20,18 @@ public class BaseController {
 	static {
 		// TODO: The app should be able to run independent of /ModWillie and stuff
 		crumbs = new ArrayList<>();
-		crumbs.add(new MenuItem("modwillie", "{{ 'home_title' | translate }}", "/ModWillie/"));
+		crumbs.add(new MenuItem("modwillie", "{{ 'home_title' | translate }}", "/"));
 //		crumbs.add(new MenuItem("user", "{{ 'user_title' | translate }}", "/ModWillie/user/"));
-		crumbs.add(new MenuItem("login", "{{ 'login_title' | translate }}", "/ModWillie/user/login/"));
-		crumbs.add(new MenuItem("logout", "{{ 'logout_title' | translate }}", "/ModWillie/user/logout/"));
+		crumbs.add(new MenuItem("login", "{{ 'login_title' | translate }}", "/user/login/"));
+		crumbs.add(new MenuItem("logout", "{{ 'logout_title' | translate }}", "/user/logout/"));
 		
-		crumbs.add(new MenuItem("application", "{{ 'manage_app' | translate }}", "/ModWillie/application/"));
-		crumbs.add(new MenuItem("notification", "{{ 'manage_not' | translate }}", "/ModWillie/notification/"));
-		crumbs.add(new MenuItem("sensor", "{{ 'manage_sensor' | translate }}", "/ModWillie/sensor/"));
+		crumbs.add(new MenuItem("application", "{{ 'manage_app' | translate }}", "/application/"));
+		crumbs.add(new MenuItem("notification", "{{ 'manage_not' | translate }}", "/notification/"));
+		crumbs.add(new MenuItem("sensor", "{{ 'manage_sensor' | translate }}", "/sensor/"));
 		
-		crumbs.add(new MenuItem("about", "{{ 'about_title' | translate }}", "/ModWillie/info/about"));
-		crumbs.add(new MenuItem("terms", "{{ 'terms_title' | translate }}", "/ModWillie/info/terms"));
-		crumbs.add(new MenuItem("privacy", "{{ 'privacy_title' | translate }}", "/ModWillie/info/privacy"));
+		crumbs.add(new MenuItem("about", "{{ 'about_title' | translate }}", "/info/about"));
+		crumbs.add(new MenuItem("terms", "{{ 'terms_title' | translate }}", "/info/terms"));
+		crumbs.add(new MenuItem("privacy", "{{ 'privacy_title' | translate }}", "/info/privacy"));
 		
 		crumbs.add(new MenuItem("add", "{{ 'add' | translate }}", "/"));
 		crumbs.add(new MenuItem("edit", "{{ 'edit' | translate }}", "/"));

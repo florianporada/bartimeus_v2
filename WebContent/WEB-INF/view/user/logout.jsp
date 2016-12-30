@@ -8,6 +8,6 @@
 
 <t:layout title="{{ 'logout_title' | translate }}">
 	<div class="col-md-10 col-xs-12 col-centered" style="background-color: rgb(41, 92, 135); color: #FAFAFA">
-		<p class="logout">{{ 'logged_out' | translate }} <a href="../login">{{ 'click_login' | translate }}</a></p>
+		<p class="logout">{{ 'logged_out' | translate }} <a href="../">{{ 'click_login' | translate }}</a></p>
 	</div>
 </t:layout>

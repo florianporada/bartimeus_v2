@@ -7,93 +7,65 @@
 
 <c:set var="url" value="${requestScope['javax.servlet.forward.request_uri']}" />
 <t:layout title="{{ 'manage_not' | translate }}">
-	<div class="col-md-12" style="background-color: white; padding-bottom: 20px;">
+	<form name="notificationForm" class="col-md-12" style="background-color: white; padding-bottom: 20px;" ng-controller="NotificationController" method="POST">
 		<div class="col-md-4 notification">
+			<input type="hidden" name="incomming" value="-1"/>
 			<h3>{{ 'incomming_notification' | translate }}</h3>
 			<div class="list-group">
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="1"> 1: H - H - H</label>
-			  	</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 2: Z - Z - Z</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 3: Z - H - Z</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 4: Z - Z - H</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 5: H - H - Z</label>
-				</a>
+				<c:forEach items="${patternsIncomming}" var="pattern" varStatus="itt">
+					<a class="list-group-item" data-id='${pattern.id}'>
+						<span class="badge" ng-click="test(${pattern.id})"><i class="fa fa-play fa-fw"></i></span>
+						<label>${itt.index + 1}: ${pattern.pattern}</label>
+				  	</a>
+				</c:forEach>
 			</div>
 		</div>
 		
 		<div class="col-md-4 notification">
+			<input type="hidden" name="vibration" value="-1"/>
 			<h3>{{ 'vibration_notification' | translate }}</h3>
 			<div class="list-group">
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="1"> 1: H - H - H</label>
-			  	</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 2: Z - Z - Z</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 3: Z - H - Z</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 4: Z - Z - H</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 5: H - H - Z</label>
-				</a>
+				<c:forEach items="${patternsVibration}" var="pattern" varStatus="itt">
+					<a class="list-group-item" data-id='${pattern.id}'>
+						<span class="badge" ng-click="test(${pattern.id})"><i class="fa fa-play fa-fw"></i></span>
+						<label>${itt.index + 1}: ${pattern.pattern}</label>
+				  	</a>
+				</c:forEach>
 			</div>
 		</div>
 		
 		<div class="col-md-4 notification">
+			<input type="hidden" name="vibration_cont" value="-1"/>
 			<h3>{{ 'vibration_cont_notification' | translate }}</h3>
 			<div class="list-group">
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="1"> 1: H - H - H</label>
-			  	</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 2: Z - Z - Z</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 3: Z - H - Z</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 4: Z - Z - H</label>
-				</a>
-				<a class="list-group-item">
-					<span class="badge"><i class="fa fa-play fa-fw"></i></span>
-					<label><input type="radio" name="incomming" value="2"> 5: H - H - Z</label>
-				</a>
+				<c:forEach items="${patternsVibrationCont}" var="pattern" varStatus="itt">
+					<a class="list-group-item" data-id='${pattern.id}'>
+						<span class="badge" ng-click="test(${pattern.id})"><i class="fa fa-play fa-fw"></i></span>
+						<label>${itt.index + 1}: ${pattern.pattern}</label>
+				  	</a>
+				</c:forEach>
 			</div>
 		</div>
 		
-		<button class="btn btn-success btn-block">
+		<button class="btn btn-success btn-block" type="submit">
 			<i class="fa fa-floppy-o fa-fw"></i> {{ 'save_button' | translate }}
 		</button>
-	</div>
+		
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	</form>
 	<script>
-		// Fix for the radio buttons not working in a a.list-group-item
-		$(".list-group-item").click(function() {
-			$(this).find("input").prop("checked", true)
+		$("button").click(function() {
+			window.notificationForm.submit();
+		});
+		$(".list-group-item").click(function(e) {
+			// The badge click will be handled in the NotificationController 
+			if(!$(e.targetd).is("i.fa, span.badge")) {
+				var self = $(this);
+				var not = self.closest(".notification");
+				not.find(".list-group-item").removeClass("active");
+				self.addClass("active");
+				not.find("input[type=hidden]").val(self.data("id"))
+			}
 		});
 	</script>
 </t:layout>

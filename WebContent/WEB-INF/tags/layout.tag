@@ -32,6 +32,7 @@
         <script src="<c:url value="/assets/js/config/DutchConfig.js" />"></script>
         <script src="<c:url value="/assets/js/config/EnglishConfig.js" />"></script>
         <script src="<c:url value="/assets/js/controller/BaseController.js" />"></script>
+        <script src="<c:url value="/assets/js/controller/NotificationController.js" />"></script>
 		
 		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/lib/bootstrap/css/bootstrap.min.css" />">
 		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/lib/fontawesome/css/font-awesome.min.css" />">

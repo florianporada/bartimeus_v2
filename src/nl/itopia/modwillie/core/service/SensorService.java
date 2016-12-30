@@ -3,9 +3,9 @@ package nl.itopia.modwillie.core.service;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import nl.itopia.modwillie.core.util.HashUtil;
 import nl.itopia.modwillie.data.dao.SensorDao;
 import nl.itopia.modwillie.data.model.Sensor;
 import nl.itopia.modwillie.data.model.User;
@@ -28,11 +28,6 @@ public class SensorService {
 		sensorDao.deleteSensor(sensor);
 	}
 	
-	public String hashPassword(String password) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();		
-		return encoder.encode(password);
-	}	
-	
 	public Sensor getSensor(long id) {
 		return sensorDao.getSensor(id);
 	}
@@ -47,5 +42,14 @@ public class SensorService {
 	
 	public List<Sensor> getSensorsForUser(long id) {
 		return sensorDao.getSensorsForUser(id);
+	}
+
+	public Sensor getSensorForId(int id) {
+		String hash = HashUtil.simpleHash(""+id);
+		return getSensorForHash(hash);
+	}
+	
+	public Sensor getSensorForHash(String hash) {
+		return sensorDao.getSensorForHash(hash);
 	}
 }

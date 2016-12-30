@@ -69,4 +69,18 @@ public class SensorDao {
 		query.setParameter("id", id);
 		return (List<Sensor>) query.list();
 	}
+
+	public Sensor getSensorForHash(String hash) {
+		final Session session = sessionFactory.getCurrentSession();
+		final String hql = "from Sensor s where s.hash= :hash";
+		final Query query = session.createQuery(hql);
+		query.setParameter("hash", hash);
+		
+		List<?> items = query.list();
+		if(items.size() > 0) {
+			return (Sensor) items.get(0);
+		}
+		
+		return null;
+	}
 }

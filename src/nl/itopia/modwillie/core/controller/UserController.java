@@ -1,10 +1,5 @@
 package nl.itopia.modwillie.core.controller;
 
-/**
- * The controller for user page. The user page has a few functions: Login, Logout, and Create.
- * @author Robin de Jong
- */
-
 import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import nl.itopia.modwillie.core.service.UserService;
 import nl.itopia.modwillie.data.model.User;
 
+/**
+ * The controller for user page. The user page has a few functions: Login, Logout, and Create.
+ * @author Robin de Jong
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {

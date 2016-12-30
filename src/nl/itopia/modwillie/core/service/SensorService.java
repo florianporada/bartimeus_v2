@@ -10,6 +10,10 @@ import nl.itopia.modwillie.data.dao.SensorDao;
 import nl.itopia.modwillie.data.model.Sensor;
 import nl.itopia.modwillie.data.model.User;
 
+/**
+ * A CRUD service for the Sensor object
+ * @author Robin de Jong
+ */
 @Service
 @Transactional
 public class SensorService {

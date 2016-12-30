@@ -1,9 +1,6 @@
 package nl.itopia.modwillie.data.dao;
 
-/**
- * A DAO for the pattern that defines how the objects should be loaded
- * @author Robin de Jong
- */
+
 
 import java.util.List;
 import org.hibernate.Query;
@@ -15,6 +12,10 @@ import org.springframework.stereotype.Repository;
 import nl.itopia.modwillie.data.data.NotificationType;
 import nl.itopia.modwillie.data.model.Pattern;
 
+/**
+ * A DAO for the pattern that defines how the objects should be loaded
+ * @author Robin de Jong
+ */
 @Repository
 public class PatternDao {
 	@Autowired

@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import nl.itopia.modwillie.data.dao.UserDao;
 import nl.itopia.modwillie.data.model.User;
 
+/**
+ * A CRUD service for the User model
+ * @author Robin de Jong
+ */
 @Service
 @Transactional
 public class UserService {

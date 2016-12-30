@@ -10,6 +10,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import nl.itopia.modwillie.data.model.User;
 
+/**
+ * The service for getting the user from the database, used by Spring Security 
+ * @author Robin de Jong
+ */
 @Service
 public class CustomUserDetailsService  implements UserDetailsService {
 	@Autowired
@@ -19,7 +23,7 @@ public class CustomUserDetailsService  implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userService.getUserWithName(username);
-		System.out.println("Got user: "+user);
+
 		GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
 		UserDetails userDetails = (UserDetails) new org.springframework.security.core.userdetails.User(
 			user.getUsername(), user.getPassword(), Arrays.asList(authority)

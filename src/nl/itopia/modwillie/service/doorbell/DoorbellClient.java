@@ -12,6 +12,10 @@ import nl.itopia.modwillie.core.util.JSONUtil;
 import nl.itopia.modwillie.data.data.ChannelData;
 import nl.itopia.modwillie.service.doorbell.data.DoorbellListener;
 
+/**
+ * The DoorbellClient holds a connection to the Server and will send a ChannelData object to the DoorbellListener
+ * @author Robin de Jong
+ */
 public class DoorbellClient implements Emitter.Listener {
 	private static final int DEFAULT_PORT = 9092;
 	private static final String DEFAULT_HOST = "localhost";

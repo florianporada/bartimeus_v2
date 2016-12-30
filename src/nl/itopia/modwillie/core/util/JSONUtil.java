@@ -4,6 +4,10 @@ import java.io.IOException;
 import com.ibm.json.java.JSONArray;
 import com.ibm.json.java.JSONObject;
 
+/**
+ * A util class that gives utilities for validating JSON objects
+ * @author Robin de Jong
+ */
 public class JSONUtil {
 	/**
 	 * Checks if the provided JSON is a valid JSON object

@@ -7,6 +7,10 @@ import java.util.Random;
 
 import javax.xml.bind.DatatypeConverter;
 
+/**
+ * A util class that helps with the generation of hashes
+ * @author Robin de Jong
+ */
 public class HashUtil {
 	private static final String HASH_ALGORITHM = "sha-256";
 	private static final String DEFAULT_ENCODING = "UTF-8";

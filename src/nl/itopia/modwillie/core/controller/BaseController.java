@@ -11,6 +11,7 @@ import nl.itopia.modwillie.data.data.MenuItem;
 
 /**
  * The base controller will be called with every Controller. So everything that is done in this controller, should happend with every page.
+ * @author Robin de Jong
  */
 @ControllerAdvice
 public class BaseController {

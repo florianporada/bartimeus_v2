@@ -17,6 +17,11 @@ import nl.itopia.modwillie.data.model.Sensor;
 import nl.itopia.modwillie.data.model.User;
 import nl.itopia.modwillie.service.doorbell.data.DoorbellListener;
 
+/**
+ * The DoorbellManager will actually process the incomming data. RETRY_COUNT is the count the application is allowed to retry to make a connection, RETRY_DELAY is the delay between the retries.
+ * While waiting for a new retry, the thread is blocked. The manager will run in asynchronous.
+ * @author Robin de Jong
+ */
 @Async
 @Component
 public class DoorbellManager {
@@ -55,6 +60,11 @@ public class DoorbellManager {
 		client.stop();
 	}
 	
+	/**
+	 * Tries to get a connection to the SocketIOServer. RETRY_COUNT tries will be made, before returning null
+	 * @return A connected DoorbellClient
+	 * @throws URISyntaxException
+	 */
 	private DoorbellClient getConnection() throws URISyntaxException {
 		DoorbellClient client = new DoorbellClient();
 		int tries = 0;
@@ -78,7 +88,10 @@ public class DoorbellManager {
 		return client;
 	}
 
-
+	/**
+	 * Process the given ChannelData. It will look at the action of the channel and call the correct method for it
+	 * @param data ChannelData
+	 */
 	public void processRing(ChannelData data) {
 		Sensor sensor = sensorService.getSensorForId(data.getId());
 		ChannelAction action = ChannelAction.get(data.getAction());
@@ -86,17 +99,25 @@ public class DoorbellManager {
 		if(action == ChannelAction.RING) {
 			sendNotification(sensor);
 		} else if(action == ChannelAction.INVALID) {
-			registerUser(sensor);
+			registerUser(data.getId(), sensor);
 		} else {
 			System.err.println("[DoorbellManager] Error for: "+data);
 		}
 	}
 	
+	/**
+	 * Send a 'TEST' command to the watch with the given pattern, this should "test" the vibration pattern so the user can decide if he likes it.
+	 * @param pattern
+	 */
 	public void sendTestNotification(Pattern pattern) {
 		// TODO: Send a notification to the watch which should try to use this pattern
 		System.out.println("[DoorbellManager] Send TEST, with pattern: "+pattern);
 	}
 	
+	/**
+	 * Send a 'RING' command to the watch with the patterns the user likes.
+	 * @param sensor
+	 */
 	public void sendNotification(Sensor sensor) {
 		System.out.println("[DoorbellManager.sendNotification] Get the pattern that is used");
 		// The patterns are on FetchType.EAGER, so if we access it from the sensor, we won't actually get the patterns
@@ -108,9 +129,15 @@ public class DoorbellManager {
 		System.out.println("[DoorbellManager.sendNotification] VibrationCont: "+user.getVibrationContPattern());
 		
 		// TODO: Send a message to the watch with the given patterns
+		// TODO: If the ID=-1 it isn't in the system yet, everything else is in the system
 	}
 	
-	public void registerUser(Sensor sensor) {
+	/**
+	 * Register the given ID in the database
+	 * @param id The ID from the FingerPrint sensor
+	 * @param sensor
+	 */
+	public void registerUser(int id, Sensor sensor) {
 		// TODO: Register the user
 	}
 }

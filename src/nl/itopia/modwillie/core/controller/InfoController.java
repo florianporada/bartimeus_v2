@@ -3,6 +3,11 @@ package nl.itopia.modwillie.core.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * The controller for all the information pages. The controller only shows the views and does nothing more.
+ * @author Robin de Jong
+ */
+
 @Controller
 @RequestMapping("/info")
 public class InfoController {

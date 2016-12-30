@@ -1,22 +1,22 @@
 package nl.itopia.modwillie.data.model;
-/**
- * A simple user object. It doesn't hold a lot of data, and the most important parts are the username and the password.
- * 
- * @author Robin de Jong
- */
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Where;
 
 import com.sun.istack.NotNull;
 
+/**
+ * A simple user object. It doesn't hold a lot of data, and the most important parts are the username and the password.
+ * 
+ * @author Robin de Jong
+ */
 @Entity
 public class User {
 	@Id

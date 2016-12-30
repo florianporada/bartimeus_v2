@@ -7,6 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+/**
+ * A sensor holds the hash, name, and the user. This will be used when processing the doorbell, so the server knows who to notify.
+ * @author Robin de Jong
+ */
 @Entity
 public class Sensor {
 	@Id

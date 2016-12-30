@@ -2,6 +2,10 @@ package nl.itopia.modwillie.data.data;
 
 import com.ibm.json.java.JSONObject;
 
+/**
+ * A Java object of the JSON send by the Arduino
+ * @author Robin de Jong
+ */
 public class ChannelData {
 	private Integer id;
 	private Integer action;

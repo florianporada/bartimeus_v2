@@ -17,6 +17,7 @@ import nl.itopia.modwillie.service.doorbell.DoorbellManager;
 /**
  * A API controller handling the test commands send.
  * This controller is not REST, because we need the current logged in user!
+ * @author Robin de Jong
  */
 @RestController
 @RequestMapping("/api/test")
@@ -38,9 +39,9 @@ public class TestApiController {
 		return getResponse("ok", msg);
 	}
 	
-	private String getError(String msg) {
-		return getResponse("error", msg);
-	}
+//	private String getError(String msg) {
+//		return getResponse("error", msg);
+//	}
 	
 	private String getResponse(String status, String msg) {
 		JSONObject obj = new JSONObject();

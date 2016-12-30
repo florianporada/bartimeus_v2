@@ -1,15 +1,14 @@
 package nl.itopia.modwillie.service.serial;
 
-/**
- * The SerialServer will open a SocketServer and broadcast the given ChannelData's.
- */
-
 import java.io.IOException;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOServer;
 import nl.itopia.modwillie.data.data.ChannelData;
 
-
+/**
+ * The SerialServer will open a SocketServer and broadcast the given ChannelData's.
+ * @author Robin de Jong
+ */
 public class SerialServer {
 	public static final int DEFAULT_PORT = 9092;
 	public static final String DEFAULT_HOST = "localhost";
@@ -30,11 +29,18 @@ public class SerialServer {
 		server.start();
 	}
 	
+	/**
+	 * Send the given ChannelData to all connected clients.
+	 * @param data
+	 */
 	public void send(ChannelData data) {
 		System.out.println("[SerialServer] Sending to "+SOCKET_EVENT+" with data: "+data);
 		server.getBroadcastOperations().sendEvent(SOCKET_EVENT, data);
 	}
-	
+
+	/**
+	 * Stop the SocektIOServer
+	 */
 	public void stop() {
 		server.stop();
 	}

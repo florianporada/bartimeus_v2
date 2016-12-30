@@ -1,10 +1,5 @@
 package nl.itopia.modwillie.core.init;
 
-/**
- * All the configurations for SpringMVC and Hibernate reside in this class.
- * @author Robin de Jong
- */
-
 import java.util.Properties;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -24,6 +19,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+/**
+ * All the configurations for SpringMVC and Hibernate reside in this class.
+ * @author Robin de Jong
+ */
 @Configuration
 @ComponentScan(basePackages = "nl.itopia.modwillie")
 @EnableWebMvc

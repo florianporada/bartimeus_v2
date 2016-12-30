@@ -9,6 +9,10 @@ import javax.validation.constraints.NotNull;
 
 import nl.itopia.modwillie.data.data.NotificationType;
 
+/**
+ * A pattern is a way the watch vibrates. The user holds a reference on what he prefers. The pattern objects are all predefined. For now they reside in the database.
+ * @author Robin de Jong
+ */
 @Entity
 public class Pattern {
 	@Id

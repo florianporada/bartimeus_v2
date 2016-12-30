@@ -8,6 +8,10 @@ import nl.itopia.modwillie.data.dao.PatternDao;
 import nl.itopia.modwillie.data.data.NotificationType;
 import nl.itopia.modwillie.data.model.Pattern;
 
+/**
+ * A CRUD service for the Pattern model 
+ * @author Robin de Jong
+ */
 @Service
 @Transactional
 public class PatternService {

@@ -1,10 +1,5 @@
 package nl.itopia.modwillie.data.dao;
 
-/**
- * A DAO for the sensor that defines how the objects should be loaded
- * @author Robin de Jong
- */
-
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import nl.itopia.modwillie.data.model.Sensor;
 
+/**
+ * A DAO for the sensor that defines how the objects should be loaded
+ * @author Robin de Jong
+ */
 @Repository
 public class SensorDao {
 	@Autowired

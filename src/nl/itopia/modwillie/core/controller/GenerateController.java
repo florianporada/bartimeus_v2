@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import nl.itopia.modwillie.core.util.HashUtil;
-
+/**
+ * The controller for generating a new sensor.
+ * @author Robin de Jong
+ */
 @Controller
 @RequestMapping("/generate")
 public class GenerateController {

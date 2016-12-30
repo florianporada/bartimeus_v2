@@ -1,8 +1,4 @@
 package nl.itopia.modwillie.service.serial;
-/**
- * The SerialManager will open a serial port and send the data to the SerialServer. 
- * If the Port can't be opened RETRY_COUNT retries are made.
- */
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +14,11 @@ import nl.itopia.modwillie.core.helper.CouldNotStartException;
 import nl.itopia.modwillie.core.util.JSONUtil;
 import nl.itopia.modwillie.data.data.ChannelData;
 
+/**
+ * The SerialManager will open a serial port and send the data to the SerialServer. RETRY_COUNT is the count the application is allowed to retry to make a connection, RETRY_DELAY is the delay between the retries.
+ * While waiting for a new retry, the thread is blocked. The manager will run in asynchronous.
+ * @author Robin de Jong
+ */
 @Async
 @Component
 public class SerialManager {

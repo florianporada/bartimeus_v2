@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import nl.itopia.modwillie.core.service.UserService;
+import nl.itopia.modwillie.core.util.HashUtil;
 import nl.itopia.modwillie.data.model.User;
 
 /**
@@ -69,7 +70,7 @@ public class UserController {
 		}
 		
 		if(!thereIsAnError && user.getPassword().equals(user.getRePassword())) {			
-			String hashedPassword = userService.hashPassword(user);
+			String hashedPassword = HashUtil.hashPassword(user.getPassword());
 			user.setPassword(hashedPassword);
 			userService.addUser(user);
 			

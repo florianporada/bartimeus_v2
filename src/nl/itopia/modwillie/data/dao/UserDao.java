@@ -27,7 +27,7 @@ public class UserDao {
 		session.update(user);
 	}
 
-	public void removeUser(int id) {
+	public void removeUser(long id) {
 		final Session session = sessionFactory.getCurrentSession();
 		User user = getUser(id);
 		session.delete(user);

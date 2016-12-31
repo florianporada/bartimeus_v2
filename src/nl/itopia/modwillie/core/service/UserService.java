@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import nl.itopia.modwillie.data.dao.UserDao;
@@ -28,13 +27,8 @@ public class UserService {
 		userDao.updateUser(user);
 	}
 	
-	public String hashPassword(User user) {
-		return hashPassword(user.getPassword());
-	}
-	
-	public String hashPassword(String password) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();		
-		return encoder.encode(password);
+	public void removeUser(User user) {
+		userDao.removeUser(user.getId());
 	}
 	
 	public User getUserWithName(String username) {

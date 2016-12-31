@@ -7,6 +7,8 @@ import java.util.Random;
 
 import javax.xml.bind.DatatypeConverter;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 /**
  * A util class that helps with the generation of hashes
  * @author Robin de Jong
@@ -17,6 +19,8 @@ public class HashUtil {
 	private static final int MAX_INT = 32767; // https://www.arduino.cc/en/Reference/Int
 	
 	private static final int SIMPLE_HASH_LENGTH = 8;
+	
+	private static final BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder();
 	
 	/**
 	 * Get a new ID. This should mostly be used for generating new sensors. The bounds is between 0 and 32,767.
@@ -59,5 +63,15 @@ public class HashUtil {
 			return null;
 		}
 		return out;
+	}
+	
+
+	/**
+	 * Hash the given password with BCryptPasswordEncoder
+	 * @param password
+	 * @return
+	 */
+	public static String hashPassword(String password) {
+		return ENCODER.encode(password);
 	}
 }

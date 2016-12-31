@@ -25,6 +25,7 @@ There are multiple ways to run it, this are two that I regularly use
         * DATABASE_USERNAME = The username that can be used to connect to the database
         
         * DATABASE_PASSWORD = The password that can be used to connect to the database
+    * The test configurations are in: TestConfiguration.java (Link: https://glitter.jemoeders.website/bartimeus/ModWillie/src/master/src/nl/itopia/modwillie/core/init/TestConfiguration.java)
         
 3) Change HIBERNATE_HBM2DDL_AUTO  in [MvcConfiguration.java](https://glitter.jemoeders.website/bartimeus/ModWillie/src/master/src/nl/itopia/modwillie/core/init/MvcConfiguration.java) to 'create' for the first time, after running the application for the first time change it back to: 'update'
 

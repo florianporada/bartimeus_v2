@@ -4,10 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-
-import javax.xml.bind.DatatypeConverter;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.codec.Hex;
 
 /**
  * A util class that helps with the generation of hashes
@@ -53,8 +51,8 @@ public class HashUtil {
 			MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
 			byte[] bytes = msg.getBytes(DEFAULT_ENCODING);
 			byte[] digested = digest.digest(bytes);
-			
-			out = DatatypeConverter.printHexBinary(digested);
+
+			out = new String(Hex.encode(digested));			
 		} catch (NoSuchAlgorithmException e) {
 			System.err.println("NoSuchAlgorithmException: "+HASH_ALGORITHM);
 			return null;
@@ -64,6 +62,7 @@ public class HashUtil {
 		}
 		return out;
 	}
+	
 	
 
 	/**

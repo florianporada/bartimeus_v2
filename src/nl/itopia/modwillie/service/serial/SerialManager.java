@@ -22,7 +22,8 @@ import nl.itopia.modwillie.data.data.ChannelData;
 @Async
 @Component
 public class SerialManager {
-	private static final String SERIAL_PORT_NAME = "COM4";
+//	private static final String SERIAL_PORT_NAME = "COM4";
+	private static final String SERIAL_PORT_NAME = "cu.wchusbserial1420";
 	private static final byte NEW_LINE_BYTE = '\n';
 	private static final int RETRY_COUNT = 10;
 	private static final int RETRY_DELAY = 3000;
@@ -41,6 +42,7 @@ public class SerialManager {
 		
 		SerialPort[] ports = SerialPort.getCommPorts();
 		for(SerialPort port : ports) {
+			System.out.println("Available ports: "+port.getSystemPortName()+", "+port.getDescriptivePortName());
 			if(port.getSystemPortName().equals(SERIAL_PORT_NAME)) {
 				System.out.println("Selecting port: "+port.getDescriptivePortName());
 				serialPort = port;

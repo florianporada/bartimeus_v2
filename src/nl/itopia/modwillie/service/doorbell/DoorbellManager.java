@@ -8,6 +8,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import nl.itopia.modwillie.core.service.NotificationService;
 import nl.itopia.modwillie.core.service.SensorService;
 import nl.itopia.modwillie.core.service.UserService;
 import nl.itopia.modwillie.data.data.ChannelAction;
@@ -112,6 +114,7 @@ public class DoorbellManager {
 	public void sendTestNotification(Pattern pattern) {
 		// TODO: Send a notification to the watch which should try to use this pattern
 		System.out.println("[DoorbellManager] Send TEST, with pattern: "+pattern);
+		NotificationService.test(pattern);
 	}
 	
 	/**
@@ -130,6 +133,7 @@ public class DoorbellManager {
 		
 		// TODO: Send a message to the watch with the given patterns
 		// TODO: If the ID=-1 it isn't in the system yet, everything else is in the system
+		NotificationService.ring(user.getIncommingPattern());
 	}
 	
 	/**

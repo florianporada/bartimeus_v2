@@ -70,9 +70,10 @@
 		$("button").click(function() {
 			window.notificationForm.submit();
 		});
+		
 		$(".list-group-item").click(function(e) {
 			// The badge click will be handled in the NotificationController 
-			if(!$(e.targetd).is("i.fa, span.badge")) {
+			if(!$(e.target).is("i.fa, span.badge")) {
 				var self = $(this);
 				var not = self.closest(".notification");
 				not.find(".list-group-item").removeClass("active");

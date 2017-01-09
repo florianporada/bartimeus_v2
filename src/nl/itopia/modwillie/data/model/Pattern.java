@@ -24,6 +24,8 @@ public class Pattern {
 	
 	@Enumerated(EnumType.STRING)
 	private NotificationType type;
+	
+	private int serverId;
 
 	public Pattern() {
 	}
@@ -58,8 +60,16 @@ public class Pattern {
 		this.type = type;
 	}
 
+	public int getServerId() {
+		return serverId;
+	}
+
+	public void setServerId(int serverId) {
+		this.serverId = serverId;
+	}
+
 	@Override
 	public String toString() {
-		return "Pattern [id=" + id + ", pattern=" + pattern + ", type=" + type + "]";
+		return "Pattern [id=" + id + ", pattern=" + pattern + ", type=" + type + ", serverId=" + serverId + "]";
 	}
 }

@@ -44,26 +44,38 @@ public class InitController {
 	}
 	
 	private void addPatterns() {
-		patternService.addPattern(addPattern("H - H - H", NotificationType.INCOMMING));
-		patternService.addPattern(addPattern("Z - Z - Z", NotificationType.INCOMMING));
-		patternService.addPattern(addPattern("Z - H - Z", NotificationType.INCOMMING));
-		patternService.addPattern(addPattern("Z - Z - H", NotificationType.INCOMMING));
-		patternService.addPattern(addPattern("H - H - Z", NotificationType.INCOMMING));
+		patternService.addPattern(addPattern("One gentle notification tone", NotificationType.INCOMMING, 2));
+		patternService.addPattern(addPattern("Two gentle notification tones", NotificationType.INCOMMING, 3));
+		patternService.addPattern(addPattern("Three long, high-intensity tones ", NotificationType.INCOMMING, 4));
+		patternService.addPattern(addPattern("One long, high-intensity tone ", NotificationType.INCOMMING, 5));
+		patternService.addPattern(addPattern("One high-intensity tone ", NotificationType.INCOMMING, 6));
+		patternService.addPattern(addPattern("Two high-intensity tones ", NotificationType.INCOMMING, 8));
+		patternService.addPattern(addPattern("Three high-intensity tones ", NotificationType.INCOMMING, 7));
+		patternService.addPattern(addPattern("One tone with ascending intensity", NotificationType.INCOMMING, 1));
+		patternService.addPattern(addPattern("One tone with descending intensity ", NotificationType.INCOMMING, 0));
 		
-		patternService.addPattern(addPattern("H - H - H", NotificationType.VIBRATION));
-		patternService.addPattern(addPattern("Z - Z - Z", NotificationType.VIBRATION));
-		patternService.addPattern(addPattern("Z - H - Z", NotificationType.VIBRATION));
-		patternService.addPattern(addPattern("Z - Z - H", NotificationType.VIBRATION));
-		patternService.addPattern(addPattern("H - H - Z", NotificationType.VIBRATION));
+		patternService.addPattern(addPattern("One gentle notification tone", NotificationType.VIBRATION, 2));
+		patternService.addPattern(addPattern("Two gentle notification tones", NotificationType.VIBRATION, 3));
+		patternService.addPattern(addPattern("Three long, high-intensity tones ", NotificationType.VIBRATION, 4));
+		patternService.addPattern(addPattern("One long, high-intensity tone ", NotificationType.VIBRATION, 5));
+		patternService.addPattern(addPattern("One high-intensity tone ", NotificationType.VIBRATION, 6));
+		patternService.addPattern(addPattern("Two high-intensity tones ", NotificationType.VIBRATION, 8));
+		patternService.addPattern(addPattern("Three high-intensity tones ", NotificationType.VIBRATION, 7));
+		patternService.addPattern(addPattern("One tone with ascending intensity", NotificationType.VIBRATION, 1));
+		patternService.addPattern(addPattern("One tone with descending intensity ", NotificationType.VIBRATION, 0));
 		
-		patternService.addPattern(addPattern("H - H - H", NotificationType.VIBRARTION_CONT));
-		patternService.addPattern(addPattern("Z - Z - Z", NotificationType.VIBRARTION_CONT));
-		patternService.addPattern(addPattern("Z - H - Z", NotificationType.VIBRARTION_CONT));
-		patternService.addPattern(addPattern("Z - Z - H", NotificationType.VIBRARTION_CONT));
-		patternService.addPattern(addPattern("H - H - Z", NotificationType.VIBRARTION_CONT));
+		patternService.addPattern(addPattern("One gentle notification tone", NotificationType.VIBRARTION_CONT, 2));
+		patternService.addPattern(addPattern("Two gentle notification tones", NotificationType.VIBRARTION_CONT, 3));
+		patternService.addPattern(addPattern("Three long, high-intensity tones ", NotificationType.VIBRARTION_CONT, 4));
+		patternService.addPattern(addPattern("One long, high-intensity tone ", NotificationType.VIBRARTION_CONT, 5));
+		patternService.addPattern(addPattern("One high-intensity tone ", NotificationType.VIBRARTION_CONT, 6));
+		patternService.addPattern(addPattern("Two high-intensity tones ", NotificationType.VIBRARTION_CONT, 8));
+		patternService.addPattern(addPattern("Three high-intensity tones ", NotificationType.VIBRARTION_CONT, 7));
+		patternService.addPattern(addPattern("One tone with ascending intensity", NotificationType.VIBRARTION_CONT, 1));
+		patternService.addPattern(addPattern("One tone with descending intensity ", NotificationType.VIBRARTION_CONT, 0));
 	}
 	
-	private Pattern addPattern(String pattern, NotificationType type) {
-		return new Pattern(pattern, type);
+	private Pattern addPattern(String pattern, NotificationType type, int serverId) {
+		return new Pattern(pattern, type, serverId);
 	}
 }

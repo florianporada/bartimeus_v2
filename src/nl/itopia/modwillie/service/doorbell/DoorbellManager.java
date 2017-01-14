@@ -18,6 +18,8 @@ import nl.itopia.modwillie.data.model.Pattern;
 import nl.itopia.modwillie.data.model.Sensor;
 import nl.itopia.modwillie.data.model.User;
 import nl.itopia.modwillie.service.doorbell.data.DoorbellListener;
+import nl.itopia.modwillie.service.server.Server;
+import nl.itopia.modwillie.service.server.ServerManager;
 
 /**
  * The DoorbellManager will actually process the incomming data. RETRY_COUNT is the count the application is allowed to retry to make a connection, RETRY_DELAY is the delay between the retries.
@@ -40,6 +42,9 @@ public class DoorbellManager {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ServerManager serverManager;
 	
 	@EventListener({ContextRefreshedEvent.class})
 	public void start() throws URISyntaxException {
@@ -98,10 +103,12 @@ public class DoorbellManager {
 		Sensor sensor = sensorService.getSensorForId(data.getId());
 		ChannelAction action = ChannelAction.get(data.getAction());
 		
+		System.out.println("Got something: "+data);
+		
 		if(action == ChannelAction.RING) {
-			sendNotification(sensor);
+			sendNotification(data.getValue(), sensor);
 		} else if(action == ChannelAction.INVALID) {
-			registerUser(data.getId(), sensor);
+			registerUser(data.getValue(), sensor);
 		} else {
 			System.err.println("[DoorbellManager] Error for: "+data);
 		}
@@ -114,26 +121,32 @@ public class DoorbellManager {
 	public void sendTestNotification(Pattern pattern) {
 		// TODO: Send a notification to the watch which should try to use this pattern
 		System.out.println("[DoorbellManager] Send TEST, with pattern: "+pattern);
-		NotificationService.test(pattern);
+		
+//		NotificationService.test(pattern);
+		String message = NotificationService.construct(pattern.getServerId(), "Test", "Testing notification");
+		serverManager.send(message);
 	}
 	
 	/**
 	 * Send a 'RING' command to the watch with the patterns the user likes.
 	 * @param sensor
 	 */
-	public void sendNotification(Sensor sensor) {
+	public void sendNotification(int id, Sensor sensor) {
 		System.out.println("[DoorbellManager.sendNotification] Get the pattern that is used");
 		// The patterns are on FetchType.EAGER, so if we access it from the sensor, we won't actually get the patterns
 		long userId = sensor.getUser().getId();
 		User user = userService.getUser(userId);
 		
-		System.out.println("[DoorbellManager.sendNotification] Incomming: "+user.getIncommingPattern());
-		System.out.println("[DoorbellManager.sendNotification] Vibration: "+user.getVibrationPattern());
-		System.out.println("[DoorbellManager.sendNotification] VibrationCont: "+user.getVibrationContPattern());
+		//		NotificationService.ring(user.getIncommingPattern());
+		Pattern pattern = user.getIncommingPattern();
 		
-		// TODO: Send a message to the watch with the given patterns
-		// TODO: If the ID=-1 it isn't in the system yet, everything else is in the system
-		NotificationService.ring(user.getIncommingPattern());
+		String description = "A person is at the door";
+		if(id < 0) {
+			description = "A unknown person is at the door";
+		}
+		
+		String message = NotificationService.construct(pattern.getServerId(), "Ring", description);
+		serverManager.send(message);
 	}
 	
 	/**

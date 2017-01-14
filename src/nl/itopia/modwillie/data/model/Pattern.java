@@ -30,10 +30,11 @@ public class Pattern {
 	public Pattern() {
 	}
 
-	public Pattern(String pattern, NotificationType type) {
+	public Pattern(String pattern, NotificationType type, int serverId) {
 		super();
 		this.pattern = pattern;
 		this.type = type;
+		this.serverId = serverId;
 	}
 
 	public long getId() {

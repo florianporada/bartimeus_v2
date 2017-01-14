@@ -55,36 +55,41 @@ public class BaseController {
 			model.addAttribute("user", principal.getName());
 		}
 		
-		// Get the URI, which will look like: /Willie/user/login
-		String uri = request.getRequestURI();
-		
-		// If it ends with  a '/', remove the first and last character
-		// Else remove the first character
-		if(uri.endsWith("/")) {
-			uri = uri.substring(1, uri.length() - 1);
-		} else {
-			uri = uri.substring(1, uri.length());	
-		}
-				
-		// Make them all lower case, so that we can easily convert them to keys
-		uri = uri.toLowerCase();
-		String[] parts = uri.split("/");
-		
 		// If we create an array with the parts lengths, it will always be that length.
 		// This is not always necessary.
 		// So we use a ArrayList which has dynamic sizing.
 		List<MenuItem> breadcrumbs = new ArrayList<>();
+		breadcrumbs.add(crumbs.get(0));
 		
-		for(String part : parts) {
-			MenuItem crumb = getCrumb(part);
-			if(crumb != null) {
-				breadcrumbs.add(crumb);
+		// Get the URI, which will look like: /ModWillie/user/login
+		String uri = request.getRequestURI();
+		// Remove ModWillie from the URI, I can't come up with a faster solution to debug it
+		// This behaviour won't be there on the server
+		uri = uri.replace("/ModWillie", "");
+		System.out.println(uri);
+		
+		if(uri.length() > 1) {
+			if(uri.endsWith("/")) {
+				uri = uri.substring(1, uri.length() - 1);
+			} else {
+				uri = uri.substring(1, uri.length());	
+			}
+					
+			// Make them all lower case, so that we can easily convert them to keys
+			uri = uri.toLowerCase();
+			
+			String[] parts = uri.split("/");
+			
+			for(String part : parts) {
+				MenuItem crumb = getCrumb(part);
+				if(crumb != null) {
+					breadcrumbs.add(crumb);
+				}
 			}
 		}
 		
 		// http://stackoverflow.com/a/4042464
 		MenuItem[] breadcrumbsArray = breadcrumbs.toArray(new MenuItem[0]);
-		
 		model.addAttribute("breadcrumbs", breadcrumbsArray);
 	}
 }

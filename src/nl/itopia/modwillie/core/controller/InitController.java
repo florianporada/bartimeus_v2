@@ -17,8 +17,6 @@ public class InitController {
 	@Autowired
 	private PatternService patternService;
 	
-	
-	
 	@RequestMapping("")
 	@ResponseBody
 	public String init() {

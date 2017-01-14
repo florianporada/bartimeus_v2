@@ -7,8 +7,8 @@
 
 <t:layout title="{{ 'manage_app' | translate }}">
 	<div class="col-md-12" style="background-color: white; padding: 10px;">
-		<div class="col-md-6 col-sm-12 flex-center">
-			<qrcode data="string" size="300"></qrcode>
+		<div class="col-md-12 flex-center">
+			<qrcode data="${host}" size="300"></qrcode>
 		</div>
 	</div>
 </t:layout>

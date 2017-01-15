@@ -7,7 +7,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <t:layout title="{{ 'privacy_title' | translate }}">
-	<div class="col-md-12" style="background-color: white;">
+	<div class="col-md-12" style="background-color: white; padding-bottom: 100px;">
 		<h2>{{ 'privacy_description_title' | translate }}</h2>
 		<p compile-html="'privacy_description' | translate"></p>
 	</div>

@@ -8,34 +8,20 @@
 
 <t:layout title="{{ 'about_title' | translate }}">
 	<div class="col-md-12" style="background-color: white;">
-		<div class="col-md-4  article">
+		<div class="col-md-6  article">
 			<div class="title">
 				<img src='<c:url value="/assets/img/bartimeus_logo.jpg"/>' />
 				<h1>{{ 'about_description_title' | translate }}</h1>
 			</div>
-			<div class="description">
-				{{ 'about_description' | translate }}
-			</div>
+			<div class="description" compile-html="'about_description' | translate"></div>
 		</div>
 		
-		<div class="col-md-4  article">
+		<div class="col-md-6  article">
 			<div class="title">
 				<img src='<c:url value="/assets/img/hva_logo.png"/>' />
 				<h1>{{ 'project_description_title' | translate }}</h1>
 			</div>
-			<div class="description">
-				{{ 'project_description' | translate }}
-			</div>
-		</div>
-		
-		<div class="col-md-4  article">
-			<div class="title">
-				<img src='<c:url value="/assets/img/willie_logo.png"/>' style="transform: rotate(-25deg);"/>
-				<h1>{{ 'app_description_title' | translate }}</h1>
-			</div>
-			<div class="description">
-				{{ 'app_description' | translate }}
-			</div>
-		</div>
+			<div class="description" compile-html="'project_description' | translate"></div>
+		</div>		
 	</div>
 </t:layout>

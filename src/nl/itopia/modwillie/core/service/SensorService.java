@@ -50,6 +50,7 @@ public class SensorService {
 
 	public Sensor getSensorForId(int id) {
 		String hash = HashUtil.simpleHash(""+id);
+		hash = hash.toUpperCase();
 		return getSensorForHash(hash);
 	}
 	

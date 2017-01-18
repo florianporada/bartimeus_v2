@@ -17,6 +17,7 @@ public class GenerateController {
 		int newSensor = HashUtil.getNewID();
 		
 		String hash = HashUtil.simpleHash(""+newSensor);
+		hash = hash.toUpperCase();
 		
 		final ModelAndView view = new ModelAndView("generate");
 		view.addObject("hash", hash);

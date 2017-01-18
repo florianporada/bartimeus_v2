@@ -100,17 +100,20 @@ public class DoorbellManager {
 	 * @param data ChannelData
 	 */
 	public void processRing(ChannelData data) {
+		System.out.println("[DoorbellManager.processRing] ChannelData: "+data);
 		Sensor sensor = sensorService.getSensorForId(data.getId());
 		ChannelAction action = ChannelAction.get(data.getAction());
 		
 		System.out.println("Got something: "+data);
 		
-		if(action == ChannelAction.RING) {
-			sendNotification(data.getValue(), sensor);
-		} else if(action == ChannelAction.INVALID) {
-			registerUser(data.getValue(), sensor);
-		} else {
-			System.err.println("[DoorbellManager] Error for: "+data);
+		if(sensor != null) {
+			if(action == ChannelAction.RING) {
+				sendNotification(data.getValue(), sensor);
+			} else if(action == ChannelAction.INVALID) {
+				registerUser(data.getValue(), sensor);
+			} else {
+				System.err.println("[DoorbellManager] Error for: "+data);
+			}
 		}
 	}
 	
@@ -134,6 +137,7 @@ public class DoorbellManager {
 	public void sendNotification(int id, Sensor sensor) {
 		System.out.println("[DoorbellManager.sendNotification] Get the pattern that is used");
 		// The patterns are on FetchType.EAGER, so if we access it from the sensor, we won't actually get the patterns
+		System.out.println("[DoorbellManager.sendNotification] Sensor: "+sensor);
 		long userId = sensor.getUser().getId();
 		User user = userService.getUser(userId);
 		

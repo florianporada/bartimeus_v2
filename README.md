@@ -1,6 +1,7 @@
 # Modified Willie
 This is the Server of [theassistant.io](https://theassistant.io), created with [Willie](https://glitter.jemoeders.website/biodiscus/Willie) in mind. 
 
+License: [LICENSE](http://glitter.jemoeders.website/bartimeus/ModWillie/src/master/LICENSE)
 
 ## How to run it
 There are multiple ways to run it, this are two that I regularly use

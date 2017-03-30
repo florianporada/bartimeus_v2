@@ -135,6 +135,7 @@ public class DoorbellManager {
 	 * @param sensor
 	 */
 	public void sendNotification(int id, Sensor sensor) {
+		
 		System.out.println("[DoorbellManager.sendNotification] Get the pattern that is used");
 		// The patterns are on FetchType.EAGER, so if we access it from the sensor, we won't actually get the patterns
 		System.out.println("[DoorbellManager.sendNotification] Sensor: "+sensor);
@@ -143,14 +144,23 @@ public class DoorbellManager {
 		
 		//		NotificationService.ring(user.getIncommingPattern());
 		Pattern pattern = user.getIncommingPattern();
+		Pattern wrongPattern = user.getVibrationPattern();
 		
 		String description = "A person is at the door";
+		
+		//ID only checks if the person is unknown. 
+		
 		if(id < 0) {
 			description = "A unknown person is at the door";
+			
+			String wrongMessage =  NotificationService.construct(wrongPattern.getServerId(),"Wrong Ring", description);
+			serverManar.send(wrongMessage);
 		}
 		
-		String message = NotificationService.construct(pattern.getServerId(), "Ring", description);
-		serverManager.send(message);
+		else{
+			String message = NotificationService.construct(pattern.getServerId(), "Ring", description);
+			serverManager.send(message);
+		}
 	}
 	
 	/**

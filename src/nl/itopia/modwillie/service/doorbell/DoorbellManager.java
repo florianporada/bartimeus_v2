@@ -154,12 +154,14 @@ public class DoorbellManager {
 			description = "A unknown person is at the door";
 			
 			String wrongMessage =  NotificationService.construct(wrongPattern.getServerId(),"Wrong Ring", description);
-			serverManar.send(wrongMessage);
+			serverManager.send(wrongMessage);
 		}
 		
 		else{
+			description = " A known person is at the door";
 			String message = NotificationService.construct(pattern.getServerId(), "Ring", description);
 			serverManager.send(message);
+			
 		}
 	}
 	

@@ -10,12 +10,12 @@
 <t:layout title="{{ 'manage_not' | translate }}">
 	<form name="notificationForm" class="col-md-12" style="background-color: white; padding-bottom: 20px;" ng-controller="NotificationController" method="POST">
 		<div class="col-md-4 notification">
-			<input type="hidden" name="incomming" value="${userIncomming.id}"/>
-			<h3>{{ 'incomming_notification' | translate }}</h3>
+			<input type="hidden" name="incoming" value="${userIncoming.id}"/>
+			<h3>{{ 'incoming_notification' | translate }}</h3>
 			<div class="list-group">
-				<c:forEach items="${patternsIncomming}" var="pattern" varStatus="itt">
+				<c:forEach items="${patternsIncoming}" var="pattern" varStatus="itt">
 					<c:set var="addClass" value="" />
-					<c:if test="${userIncomming.id == pattern.id}">
+					<c:if test="${userIncoming.id == pattern.id}">
 						<c:set var="addClass" value="active"/>
 					</c:if>
 					<a class="list-group-item ${addClass}" data-id='${pattern.id}'>
@@ -27,12 +27,12 @@
 		</div>
 		
 		<div class="col-md-4 notification">
-			<input type="hidden" name="vibration" value="${userVibration.id}"/>
-			<h3>{{ 'vibration_notification' | translate }}</h3>
+			<input type="hidden" name="doorbell_known" value="${userDoorbellKnown.id}"/>
+			<h3>{{ 'doorbell_known_notification' | translate }}</h3>
 			<div class="list-group">
-				<c:forEach items="${patternsVibration}" var="pattern" varStatus="itt">
+				<c:forEach items="${patternsDoorbellKnown}" var="pattern" varStatus="itt">
 					<c:set var="addClass" value="" />
-					<c:if test="${userVibration.id == pattern.id}">
+					<c:if test="${userDoorbellKnown.id == pattern.id}">
 						<c:set var="addClass" value="active"/>
 					</c:if>
 					<a class="list-group-item ${addClass}" data-id='${pattern.id}'>
@@ -44,12 +44,29 @@
 		</div>
 		
 		<div class="col-md-4 notification">
-			<input type="hidden" name="vibration_cont" value="${userVibrationCont.id}"/>
-			<h3>{{ 'vibration_cont_notification' | translate }}</h3>
+			<input type="hidden" name="doorbell_unknown" value="${userDoorbellUnknown.id}"/>
+			<h3>{{ 'doorbell_unknown_notification' | translate }}</h3>
 			<div class="list-group">
-				<c:forEach items="${patternsVibrationCont}" var="pattern" varStatus="itt">
+				<c:forEach items="${patternsDoorbellUnknown}" var="pattern" varStatus="itt">
 					<c:set var="addClass" value="" />
-					<c:if test="${userVibrationCont.id == pattern.id}">
+					<c:if test="${userDoorbellUnknown.id == pattern.id}">
+						<c:set var="addClass" value="active"/>
+					</c:if>
+					<a class="list-group-item ${addClass}" data-id='${pattern.id}'>
+						<span class="badge" ng-click="test(${pattern.id})"><i class="fa fa-play fa-fw"></i></span>
+						<label>${itt.index + 1}: ${pattern.pattern}</label>
+				  	</a>
+				</c:forEach>
+			</div>
+		</div>
+
+		<div class="col-md-4 notification">
+			<input type="hidden" name="motion" value="${userMotion.id}"/>
+			<h3>{{ 'motion_notification' | translate }}</h3>
+			<div class="list-group">
+				<c:forEach items="${patternsMotion}" var="pattern" varStatus="itt">
+					<c:set var="addClass" value="" />
+					<c:if test="${userMotion.id == pattern.id}">
 						<c:set var="addClass" value="active"/>
 					</c:if>
 					<a class="list-group-item ${addClass}" data-id='${pattern.id}'>

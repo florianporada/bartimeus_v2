@@ -32,53 +32,64 @@ public class NotificationController {
 		final ModelAndView view = new ModelAndView("notification/index");
 		User user = userService.getUser(principal);
 
-		Pattern patternIncomming = user.getIncommingPattern();
-		Pattern patternVibration = user.getVibrationPattern();
-		Pattern patternVivrationCont = user.getVibrationContPattern();
-		if(patternIncomming == null) {
-			patternIncomming = patternService.getFirstPattern(NotificationType.INCOMMING);
+		Pattern patternIncoming = user.getIncomingPattern();
+		Pattern patternDoorbellKnown = user.getDoorbellKnownPattern();
+		Pattern patternDoorbellUnknown = user.getDoorbellUnknownPattern();
+		Pattern patternMotion = user.getMotionPattern();
+		if(patternIncoming == null) {
+			patternIncoming = patternService.getFirstPattern(NotificationType.INCOMING);
 		}
 		
-		if(patternVibration == null) {
-			patternVibration = patternService.getFirstPattern(NotificationType.VIBRATION);
+		if(patternDoorbellKnown == null) {
+			patternDoorbellKnown = patternService.getFirstPattern(NotificationType.DOORBELL_KNOWN);
 		}
 		
-		if(patternVivrationCont == null) {
-			patternVivrationCont = patternService.getFirstPattern(NotificationType.VIBRARTION_CONT);
+		if(patternDoorbellUnknown == null) {
+			patternDoorbellUnknown = patternService.getFirstPattern(NotificationType.DOORBELL_UNKNOWN);
 		}
-		System.out.println(patternIncomming+", "+patternVibration+", "+patternVivrationCont);
+		if(patternMotion == null) {
+			patternMotion = patternService.getFirstPattern(NotificationType.MOTION);
+		}
+		System.out.println(patternIncoming+", "+patternDoorbellKnown+", "+patternDoorbellUnknown+", "+patternMotion);
 		
-		view.addObject("userIncomming", patternIncomming);
-		view.addObject("userVibration", patternVibration);
-		view.addObject("userVibrationCont", patternVivrationCont);
+		view.addObject("userIncoming", patternIncoming);
+		view.addObject("userDoorbellKnown", patternDoorbellKnown);
+		view.addObject("userDoorbellUnknown", patternDoorbellUnknown);
+		view.addObject("userMotion", patternMotion);
 		
-		view.addObject("patternsIncomming", patternService.getPatterns(NotificationType.INCOMMING));
-		view.addObject("patternsVibration", patternService.getPatterns(NotificationType.VIBRATION));
-		view.addObject("patternsVibrationCont", patternService.getPatterns(NotificationType.VIBRARTION_CONT));
-				
+		view.addObject("patternsIncoming", patternService.getPatterns(NotificationType.INCOMING));
+		view.addObject("patternsDoorbellKnown", patternService.getPatterns(NotificationType.DOORBELL_KNOWN));
+		view.addObject("patternsDoorbellUnknown", patternService.getPatterns(NotificationType.DOORBELL_UNKNOWN));
+		view.addObject("patternsMotion", patternService.getPatterns(NotificationType.MOTION));
+		
+
 		return view;
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	public String updateNotifications(HttpServletRequest request, Principal principal, RedirectAttributes ra) {
-		String incomming = request.getParameter("incomming");
-		String vibration = request.getParameter("vibration");
-		String vibrationCont = request.getParameter("vibration_cont");
+		String incoming = request.getParameter("incoming");
+		String doorbellKnown = request.getParameter("doorbell_known");
+		String doorbellUnknown = request.getParameter("doorbell_unknown");
+		String motion = request.getParameter("motion");
 		
-		System.out.println(incomming+", "+vibration+", "+vibrationCont);
+		System.out.println(incoming+", "+doorbellKnown+", "+doorbellUnknown+", "+motion);
 		
-		long incommingPattern = Long.parseLong(incomming);
-		long vibrationPattern = Long.parseLong(vibration);
-		long vibrationContPattern = Long.parseLong(vibrationCont);
+		long incomingPattern = Long.parseLong(incoming);
+		long doorbellKnownPattern = Long.parseLong(doorbellKnown);
+		long doorbellUnknownPattern = Long.parseLong(doorbellUnknown);
+		long motionPattern = Long.parseLong(motion);
 		
-		Pattern patternIncomming = patternService.getPattern(incommingPattern);
-		Pattern patternVibration = patternService.getPattern(vibrationPattern);
-		Pattern patternVivrationCont = patternService.getPattern(vibrationContPattern);
+		Pattern patternIncoming = patternService.getPattern(incomingPattern);
+		Pattern patternDoorbellKnown = patternService.getPattern(doorbellKnownPattern);
+		Pattern patternDoorbellUnknown = patternService.getPattern(doorbellUnknownPattern);
+		Pattern patternMotion = patternService.getPattern(motionPattern);
 		
 		User user = userService.getUser(principal);
-		user.setIncommingPattern(patternIncomming);
-		user.setVibrationPattern(patternVibration);
-		user.setVibrationContPattern(patternVivrationCont);
+		user.setIncomingPattern(patternIncoming);
+		user.setDoorbellKnownPattern(patternDoorbellKnown);
+		user.setDoorbellUnknownPattern(patternDoorbellUnknown);
+		user.setMotionPattern(patternMotion);
 		userService.updateUser(user);
 		
 		return "redirect:/notification/";

@@ -5,7 +5,7 @@ package nl.itopia.modwillie.data.data;
  * @author Robin de Jong
  */
 public enum ChannelAction {
-	RING, REGISTER, INVALID;
+	RING, REGISTER, MOTION, INVALID;
 	
 	public static final ChannelAction get(int action) {
 		switch(action) {
@@ -13,6 +13,8 @@ public enum ChannelAction {
 				return RING;
 			case 1:
 				return REGISTER;
+			case 2:
+				return MOTION;				
 			default:
 				return INVALID;
 		}

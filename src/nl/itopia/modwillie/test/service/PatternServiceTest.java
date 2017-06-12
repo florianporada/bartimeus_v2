@@ -34,7 +34,7 @@ public class PatternServiceTest {
 	@Before
 	public void setup() {
 		defaultPattern = "H - H - Z";
-		defaultType = NotificationType.INCOMMING;
+		defaultType = NotificationType.INCOMING;
 		
 		pattern = new Pattern();
 		pattern.setPattern(defaultPattern);
@@ -62,7 +62,7 @@ public class PatternServiceTest {
 		
 		Pattern updatePattern = patterns.get(0);
 		updatePattern.setPattern("Z - H - H");
-		updatePattern.setType(NotificationType.VIBRATION);
+		updatePattern.setType(NotificationType.DOORBELL_KNOWN);
 		patternService.updatePattern(updatePattern);
 		patterns = patternService.getPatterns();
 		
@@ -106,16 +106,19 @@ public class PatternServiceTest {
 		List<Pattern> patterns = patternService.getPatterns();
 		Assert.assertEquals(patterns.size(), 1);
 		
-		List<Pattern> getPatterns = patternService.getPatterns(NotificationType.INCOMMING);
+		List<Pattern> getPatterns = patternService.getPatterns(NotificationType.INCOMING);
 		Assert.assertEquals(getPatterns.size(), 1);
-		getPatterns = patternService.getPatterns(NotificationType.VIBRATION);
+		getPatterns = patternService.getPatterns(NotificationType.DOORBELL_KNOWN);
 		Assert.assertEquals(getPatterns.size(), 0);
-		getPatterns = patternService.getPatterns(NotificationType.VIBRARTION_CONT);
+		getPatterns = patternService.getPatterns(NotificationType.DOORBELL_UNKNOWN);
 		Assert.assertEquals(getPatterns.size(), 0);
+		getPatterns = patternService.getPatterns(NotificationType.MOTION);
+		Assert.assertEquals(getPatterns.size(), 0);
+		
 		
 		Pattern updatePattern = patterns.get(0);
 		updatePattern.setPattern("Z - H - H");
-		updatePattern.setType(NotificationType.VIBRATION);
+		updatePattern.setType(NotificationType.DOORBELL_KNOWN);
 		patternService.updatePattern(updatePattern);
 		patterns = patternService.getPatterns();
 		
@@ -124,12 +127,15 @@ public class PatternServiceTest {
 		Assert.assertNotEquals(updatedPattern.getPattern(), defaultPattern);
 		Assert.assertNotEquals(updatedPattern.getType(), defaultType);
 		
-		getPatterns = patternService.getPatterns(NotificationType.INCOMMING);
+		getPatterns = patternService.getPatterns(NotificationType.INCOMING);
 		Assert.assertEquals(getPatterns.size(), 0);
-		getPatterns = patternService.getPatterns(NotificationType.VIBRATION);
+		getPatterns = patternService.getPatterns(NotificationType.DOORBELL_KNOWN);
 		Assert.assertEquals(getPatterns.size(), 1);
-		getPatterns = patternService.getPatterns(NotificationType.VIBRARTION_CONT);
+		getPatterns = patternService.getPatterns(NotificationType.DOORBELL_UNKNOWN);
+		Assert.assertEquals(getPatterns.size(), 0);
+		getPatterns = patternService.getPatterns(NotificationType.MOTION);
 		Assert.assertEquals(getPatterns.size(), 0);		
+			
 	}
 
 	@Test
@@ -149,7 +155,7 @@ public class PatternServiceTest {
 		List<Pattern> patterns = patternService.getPatterns();
 		Assert.assertEquals(patterns.size(), 1);
 		
-		Pattern getPattern = patternService.getFirstPattern(NotificationType.INCOMMING);
+		Pattern getPattern = patternService.getFirstPattern(NotificationType.INCOMING);
 		Assert.assertEquals(getPattern.getId(), pattern.getId());
 		Assert.assertEquals(getPattern.getPattern(), pattern.getPattern());
 		Assert.assertEquals(getPattern.getType(), pattern.getType());

@@ -33,17 +33,21 @@ public class User {
 	private String rePassword;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@Where(clause="type='INCOMMING'")
-	private Pattern incommingPattern;
+	@Where(clause="type='INCOMING'")
+	private Pattern incomingPattern;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@Where(clause="type='VIBRATION'")
-	private Pattern vibrationPattern;
+	@Where(clause="type='DOORBELL_KNOWN'")
+	private Pattern doorbellKnownPattern;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@Where(clause="type='VIBRATION_CONT'")
-	private Pattern vibrationContPattern;
+	@Where(clause="type='DOORBELL_UNKNOWN'")
+	private Pattern doorbellUnknownPattern;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@Where(clause="type='MOTION'")
+	private Pattern motionPattern;
+
 	public User() {}
 	
 	public User(String username, String password, String rePassword) {
@@ -84,34 +88,43 @@ public class User {
 		this.rePassword = rePassword;
 	}
 	
-	public Pattern getIncommingPattern() {
-		return incommingPattern;
+	public Pattern getIncomingPattern() {
+		return incomingPattern;
 	}
 
-	public void setIncommingPattern(Pattern incommingPattern) {
-		this.incommingPattern = incommingPattern;
+	public void setIncomingPattern(Pattern incomingPattern) {
+		this.incomingPattern = incomingPattern;
 	}
 
-	public Pattern getVibrationPattern() {
-		return vibrationPattern;
+	public Pattern getMotionPattern() {
+		return motionPattern;
 	}
 
-	public void setVibrationPattern(Pattern vibrationPattern) {
-		this.vibrationPattern = vibrationPattern;
+	public void setMotionPattern(Pattern vibrationPattern) {
+		this.motionPattern = vibrationPattern;
 	}
 
-	public Pattern getVibrationContPattern() {
-		return vibrationContPattern;
+	public Pattern getDoorbellKnownPattern() {
+		return doorbellKnownPattern;
 	}
 
-	public void setVibrationContPattern(Pattern vibrationContPattern) {
-		this.vibrationContPattern = vibrationContPattern;
+	public void setDoorbellKnownPattern(Pattern vibrationPattern) {
+		this.doorbellKnownPattern = vibrationPattern;
 	}
+
+	public Pattern getDoorbellUnknownPattern() {
+		return doorbellUnknownPattern;
+	}
+
+	public void setDoorbellUnknownPattern(Pattern vibrationPattern) {
+		this.doorbellUnknownPattern = vibrationPattern;
+	}
+
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", rePassword=" + rePassword
-				+ ", incommingPattern=" + incommingPattern + ", vibrationPattern=" + vibrationPattern
-				+ ", vibrationContPattern=" + vibrationContPattern + "]";
+				+ ", incomingPattern=" + incomingPattern + ", doorbellKnownPattern=" + doorbellKnownPattern
+				+ ", doorbellUnknownPattern=" + doorbellUnknownPattern + ", motionPattern=" + motionPattern + "]";
 	}
 }

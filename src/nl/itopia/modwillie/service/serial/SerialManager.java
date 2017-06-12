@@ -22,7 +22,7 @@ import nl.itopia.modwillie.data.data.ChannelData;
 @Async
 @Component
 public class SerialManager {
-	private static final String SERIAL_PORT_NAME = "COM4";
+	private static final String SERIAL_PORT_NAME = "ttyUSB0";
 //	private static final String SERIAL_PORT_NAME = "cu.wchusbserial1420";
 	private static final byte NEW_LINE_BYTE = '\n';
 	private static final int RETRY_COUNT = 10;
@@ -74,10 +74,13 @@ public class SerialManager {
 					byte[] buffer = new byte[bufferSize];
 					serialPort.readBytes(buffer, bufferSize);
 					String bufferString = new String(buffer);
+					//System.out.println(bufferString);
 					line += bufferString;
+					System.out.println(buffer);
 					if(contains(buffer, NEW_LINE_BYTE)) {
 						ChannelData data = validateLine(line);
 						if(data != null) {
+							System.out.println(data);
 							server.send(data);
 						}
 						line = "";

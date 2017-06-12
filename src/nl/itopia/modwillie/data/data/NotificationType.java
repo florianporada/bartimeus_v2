@@ -5,5 +5,5 @@ package nl.itopia.modwillie.data.data;
  * @author Robin de Jong
  */
 public enum NotificationType {
-	INCOMMING, VIBRATION, VIBRARTION_CONT;
+	INCOMING, DOORBELL_KNOWN, DOORBELL_UNKNOWN, MOTION;
 }

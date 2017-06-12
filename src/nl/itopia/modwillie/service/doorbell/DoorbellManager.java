@@ -1,6 +1,7 @@
 package nl.itopia.modwillie.service.doorbell;
 
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextClosedEvent;
@@ -22,7 +23,7 @@ import nl.itopia.modwillie.service.server.Server;
 import nl.itopia.modwillie.service.server.ServerManager;
 
 /**
- * The DoorbellManager will actually process the incomming data. RETRY_COUNT is the count the application is allowed to retry to make a connection, RETRY_DELAY is the delay between the retries.
+ * The DoorbellManager will actually process the incoming data. RETRY_COUNT is the count the application is allowed to retry to make a connection, RETRY_DELAY is the delay between the retries.
  * While waiting for a new retry, the thread is blocked. The manager will run in asynchronous.
  * @author Robin de Jong
  */
@@ -108,7 +109,9 @@ public class DoorbellManager {
 		
 		if(sensor != null) {
 			if(action == ChannelAction.RING) {
-				sendNotification(data.getValue(), sensor);
+				sendDoorbellNotification(data.getValue(), sensor);
+			} else if(action == ChannelAction.MOTION) {
+				sendMotionNotification(sensor);
 			} else if(action == ChannelAction.INVALID) {
 				registerUser(data.getValue(), sensor);
 			} else {
@@ -134,25 +137,71 @@ public class DoorbellManager {
 	 * Send a 'RING' command to the watch with the patterns the user likes.
 	 * @param sensor
 	 */
-	public void sendNotification(int id, Sensor sensor) {
-		System.out.println("[DoorbellManager.sendNotification] Get the pattern that is used");
+	public void sendDoorbellNotification(int id, Sensor sensor) {
+
+		System.out.println("[DoorbellManager.sendDoorbellNotification] Get the pattern that is used");
 		// The patterns are on FetchType.EAGER, so if we access it from the sensor, we won't actually get the patterns
-		System.out.println("[DoorbellManager.sendNotification] Sensor: "+sensor);
+		System.out.println("[DoorbellManager.sendDoorbellNotification] Sensor: " + sensor);
 		long userId = sensor.getUser().getId();
 		User user = userService.getUser(userId);
 		
-		//		NotificationService.ring(user.getIncommingPattern());
-		Pattern pattern = user.getIncommingPattern();
+		notificationIncoming(user);
+
+		Pattern knownPattern = user.getDoorbellKnownPattern();
+		Pattern unknownPattern = user.getDoorbellUnknownPattern();
 		
 		String description = "A person is at the door";
+		
+		// ID only checks if the person is unknown. 
+		
 		if(id < 0) {
 			description = "A unknown person is at the door";
+			String unknownRingMessage =  NotificationService.construct(unknownPattern.getServerId(),"Wrong Ring", description);
+			serverManager.send(unknownRingMessage);
 		}
 		
-		String message = NotificationService.construct(pattern.getServerId(), "Ring", description);
-		serverManager.send(message);
+		else{
+			description = " A known person is at the door";
+			String knownRingMessage = NotificationService.construct(knownPattern.getServerId(), "Ring", description);
+			serverManager.send(knownRingMessage);
+			
+		}
 	}
 	
+	public void notificationIncoming(User user) {
+		String description = "Incoming notification.";
+
+		Pattern incomingPattern = user.getIncomingPattern();
+		String incomingMessage =  NotificationService.construct(incomingPattern.getServerId(), "Warning Notifiction", description);
+		serverManager.send(incomingMessage);
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch (InterruptedException e){
+			 e.printStackTrace();
+		}		
+	}
+
+	public void sendMotionNotification(Sensor sensor) {				
+		System.out.println("[DoorbellManager.sendMotionNotification] Get the pattern that is used");
+		// The patterns are on FetchType.EAGER, so if we access it from the sensor, we won't actually get the patterns
+		System.out.println("[DoorbellManager.sendMotionNotification] Sensor: " + sensor);
+		long userId = sensor.getUser().getId();
+		User user = userService.getUser(userId);
+
+		notificationIncoming(user);
+		
+		// NotificationService.ring(user.getMotionPattern());
+		Pattern motionPattern = user.getMotionPattern();
+		
+		String description = "There is someone in your backyard";
+		
+		// Send vibration to smartphone.	
+		String motionMessage = NotificationService.construct(motionPattern.getServerId(), "Motion", description);
+		serverManager.send(motionMessage);
+		
+	}
+
+
 	/**
 	 * Register the given ID in the database
 	 * @param id The ID from the FingerPrint sensor

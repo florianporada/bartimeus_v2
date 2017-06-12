@@ -20,6 +20,8 @@ public class ApplicationController {
 	public ModelAndView index() {
 		String local = IPUtil.getLocalAddress();
 		
+		System.out.println(local);
+		
 		final ModelAndView view = new ModelAndView("application/index");
 		view.addObject("host", IPUtil.createAddress(local, Server.DEFAULT_PORT));
 		

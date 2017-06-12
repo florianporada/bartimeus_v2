@@ -44,90 +44,91 @@
 		<link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/footer.css" />">
 	</head>
 	<body ng-controller="BaseController">
-		<div class="overlay" ng-hide="true">
-            <div class="loader">
-                <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-		
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-				     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-				     </button>
-				     <c:choose>
-				     	<c:when test="${title != 'Bartiméus'}">
-				     		<a class="navbar-brand" href="<c:url value="/" />">Bartiméus: ${title}</a>
-				     	</c:when>
-				     	<c:otherwise>
-							<a class="navbar-brand" href="<c:url value="/" />">Bartiméus</a>		     	
-				     	</c:otherwise>
-				     </c:choose>
-		
-			    </div>
-			    
-			    <div class="nav navbar-nav">
-			    	<ol class="breadcrumb">
-			    		<c:forEach items="${breadcrumbs}" var="crumb" varStatus="itt">
-			    			<c:choose>
-			    				<c:when test="${itt.last}">
-			    					<li class="breadcrumb-item active">${crumb.name}</li>
-			    				</c:when>
-			    				<c:otherwise>
-			    					<li class="breadcrumb-item"><a href='<c:url value="${crumb.url}"/>'>${crumb.name}</a></li>
-			    				</c:otherwise>
-			    			</c:choose>
-			    		</c:forEach>
-					</ol>
-			    </div>
-			      
-			    <ul class="nav navbar-nav navbar-right">
-			    	<li>
-						<ul class="i18n">
-							<li ng-if="LANG === 'en_US'">
-								<a ng-click="lang('nl_NL')">
-									<img src='<c:url value="/assets/img/nl.png" />'>
-								</a>
-							</li>
-							<li ng-if="LANG === 'nl_NL'">
-								<a ng-click="lang('en_US')">
-									<img src='<c:url value="/assets/img/uk.png" />'>
-								</a>
-							</li>
-						</ul>
-			    	</li>
-			        <li>
-			        	<c:if test="${isLoggedIn}">
-			        		<a href="${base}/user/logout">Hey ${user}, <strong>{{'click_logout' | translate}}</strong></a>
-			        	</c:if>
-			        </li>
-			    </ul>	
+		<div id="wrap">
+			<div class="overlay" ng-hide="true">
+				<div class="loader">
+					<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+					<span class="sr-only">Loading...</span>
+				</div>
 			</div>
-		</nav>
-		
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<jsp:doBody/>
+			
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<c:choose>
+							<c:when test="${title != 'Bartiméus'}">
+								<a class="navbar-brand" href="<c:url value="/" />">Bartiméus: ${title}</a>
+							</c:when>
+							<c:otherwise>
+								<a class="navbar-brand" href="<c:url value="/" />">Bartiméus</a>		     	
+							</c:otherwise>
+						</c:choose>
+			
+					</div>
+					
+					<div class="nav navbar-nav">
+						<ol class="breadcrumb">
+							<c:forEach items="${breadcrumbs}" var="crumb" varStatus="itt">
+								<c:choose>
+									<c:when test="${itt.last}">
+										<li class="breadcrumb-item active">${crumb.name}</li>
+									</c:when>
+									<c:otherwise>
+										<li class="breadcrumb-item"><a href='<c:url value="${crumb.url}"/>'>${crumb.name}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</ol>
+					</div>
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<ul class="i18n">
+								<li ng-if="LANG === 'en_US'">
+									<a ng-click="lang('nl_NL')">
+										<img src='<c:url value="/assets/img/nl.png" />'>
+									</a>
+								</li>
+								<li ng-if="LANG === 'nl_NL'">
+									<a ng-click="lang('en_US')">
+										<img src='<c:url value="/assets/img/uk.png" />'>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<c:if test="${isLoggedIn}">
+								<a href="${base}/user/logout">Hey ${user}, <strong>{{'click_logout' | translate}}</strong></a>
+							</c:if>
+						</li>
+					</ul>	
+				</div>
+			</nav>
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<jsp:doBody/>
+					</div>
 				</div>
 			</div>
 		</div>
-
 		<footer class="footer">
-			<div class="fluid-container">
-				<ul class="links">
-					<li><a href="https://theassistant.io">TheAssistant.io</a></li>
-					<li><a href="<c:url value="/info/about" />">{{ 'about_title' | translate }}</a></li>
-					<li><a href="<c:url value="/info/privacy" />">{{ 'privacy_title' | translate }}</a></li>
-					<li><a href="<c:url value="/info/terms" />">{{ 'terms_title' | translate }}</a></li>
-				</ul>
-				<p class="text">&copy; 2016, Team Dream Team</p>
-			</div>
+				<div class="container">
+					<ul class="links">
+						<li><a href="https://theassistant.io">TheAssistant.io</a></li>
+						<li><a href="<c:url value="/info/about" />">{{ 'about_title' | translate }}</a></li>
+						<li><a href="<c:url value="/info/privacy" />">{{ 'privacy_title' | translate }}</a></li>
+						<li><a href="<c:url value="/info/terms" />">{{ 'terms_title' | translate }}</a></li>
+					</ul>
+					<p class="text">&copy; 2016, Team Dream Team</p>
+				</div>
 		</footer>
 	</body>
 </html>

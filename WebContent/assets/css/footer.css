@@ -1,10 +1,10 @@
 .footer {
-	position: fixed;
     bottom: 0;
     width: 100%;
     height: 60px;
     background-color: rgb(41, 92, 135);
     color: #FAFAFA;
+    text-align: center;
     display:flex;justify-content:center;align-items:center;
 }
 

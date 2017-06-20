@@ -172,7 +172,7 @@ public class DoorbellManager {
 		String description = "Incoming notification.";
 
 		Pattern incomingPattern = user.getIncomingPattern();
-		String incomingMessage =  NotificationService.construct(incomingPattern.getServerId(), "Warning Notifiction", description);
+		String incomingMessage =  NotificationService.construct(incomingPattern.getServerId(), "Warning Notification", description);
 		serverManager.send(incomingMessage);
 		try {
 			TimeUnit.SECONDS.sleep(5);
